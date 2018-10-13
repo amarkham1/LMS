@@ -1,0 +1,30 @@
+
+a {
+	text-decoration: none;
+}
+
+.sidebar {
+	width: 80px;
+	height: 100%;
+	background-color: #22672A;
+	color: white;
+	font-weight: bold;
+	position: fixed;
+}
+
+.navicon {
+	width: 100%;
+	height: auto;
+	padding: 15px 0 15px 0;
+	font-size: 12px;
+}
+
+.navicon:hover {
+	background-color: #CEE3D1;
+}
+
+.navicon:visited {
+	text-decoration: none;
+	color: white;
+}
+
