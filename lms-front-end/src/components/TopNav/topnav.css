@@ -51,6 +51,7 @@ a {
 	background-color: white;
 	margin-right: 0px;
 	padding-right: 0px;
+	cursor: pointer;
 }
 
 .avatar {
@@ -67,6 +68,21 @@ a {
 
 .avatar:hover {
 	border: 2px solid #22672A;
+}
+
+.alertmenu {
+	position: absolute;
+	margin: 0px;
+	right: 30px;
+	top: 5px;
+	width: 200px;
+	background-color: white;
+	padding: 10px;
+	z-index: 10000;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
 }
 
 .profilemenu {
@@ -87,6 +103,13 @@ a {
 .loggedin {
 	color: black;
 	margin-bottom: 0px;
+}
+
+.alerttitle {
+	color: black;
+	border-bottom: 1px solid #CACACA;
+	padding-bottom: 5px;
+	margin-bottom: 15px;
 }
 
 .avatarname {
@@ -140,6 +163,7 @@ a {
 	text-decoration: none !important;
 	width: 120px;
 	height: 48px;
+	cursor: pointer;
 	font-size: 12px;
 }
 

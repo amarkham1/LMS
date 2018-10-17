@@ -108,7 +108,6 @@ class Register extends Component {
 		  })*/
 		  .then(user => {
 		  	if(user) {
-		  		console.log("user??");
 		  		this.props.loadUser(user)
 		  		this.props.onRouteChange('home');
 		  	} 

@@ -7,7 +7,7 @@ import Register from './components/Register/register.js';
 
 const initialState = {
 	input: '',
-	route: 'home',
+	route: 'signin',
 	isSignedIn: false,
 	user: {
 		id: '',
@@ -35,11 +35,19 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-  	if (route === 'signout') {
-  		this.setState(initialState)
-  	} else if (route === 'home') {
-  		this.setState({isSignedIn: true})
-  	}
+    switch(route) {
+      case 'home':
+      case 'portfolios':
+      case 'properties':   
+      case 'tenants': 
+      case 'deals':    
+      case 'reports': 
+          this.setState({isSignedIn: true})
+          break;
+      default:
+          this.setState(initialState)
+          break;
+    }
   	this.setState({route: route});
   }
 
@@ -47,20 +55,46 @@ class App extends Component {
   	const { isSignedIn, route } = this.state;
     return (
       <div className="App body">
+        <TopNav 
+          firstName={this.state.user.firstName}
+          lastName={this.state.user.lastName}
+          onRouteChange={this.onRouteChange}
+          isSignedIn={isSignedIn}
+        />
       	{ route === 'home'
       	  ? <div>
-		          <TopNav 
-                firstName={this.state.user.firstName}
-                lastName={this.state.user.lastName}
-                onRouteChange={this.onRouteChange}
-              />
 		          <Body />
 		        </div>
 		   : (
-		   	  route === 'signin'
-		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
-		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
-		   	  )
+          route === 'portfolios'
+          ? <div>
+              <Body />Portfolio
+            </div>
+          : (
+            route === 'properties'
+            ? <div>
+               <Body />Properties
+            </div>
+            : (
+              route === 'tenants'
+              ? <div>
+                  <Body />Tenants
+                </div>
+                : (
+                  route === 'deals'
+                  ? <div>
+                      <Body />Deals
+                    </div>
+                    : (
+                      route === 'reports'
+                      ? <div>
+                          <Body />Reports
+                        </div>
+                        : (
+                		   	  route === 'signin'
+                		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
+                		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
+                		   	  ))))))
 		}
       </div>
     );
