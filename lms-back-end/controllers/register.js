@@ -3,13 +3,13 @@ const handleRegister = (req, res, db, bcrypt) => {
   if (!email || !firstName || !lastName || !password) {
     return res.status(400).json('incorrect form submission');
   }
-  db.transaction(trx => {
+  /*db.transaction(trx => {
     trx.from('users')
     .where({email: email})
     .then(exists => {
       res.json(email);
     })
-  })
+  })*/
   const hash = bcrypt.hashSync(password);
     db.transaction(trx => {
       trx.insert({

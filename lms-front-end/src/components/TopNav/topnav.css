@@ -1,12 +1,155 @@
-.topnav {
+
+a { 
+	text-decoration: none;
+}
+
+.nav {
+	background-color: white;
+	display: flex;
+}
+
+.top-nav {
+	display: flex;
+	height: 50px;
 	width: 100%;
-	background-color: #22672A;
+	justify-content: flex-start;
+	position: fixed;
+	align-items: center;
+	flex-direction: row;
+	background-color: white;
+}
+
+.search-bar {
+	position: absolute;
+	left: 50%;
+	height: 40px;
+	background-color: white;
+	transform: translateX(-50%);
+	width: 400px;
+}
+
+.searchbox {
+	border: 1px solid #CACACA;
+	border-radius: 5px;
+	padding-left: 10px;
+	height: 80%;
+	width: 100%;
+}
+
+.account {
+	flex: 0 1 auto;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	margin-left: auto;
+	margin-right: 40px;
+	background-color: white;
+	width: 100px;
+}
+
+.alerticon {
+	background-color: white;
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+.avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #EAEAEA;
+	border: 1px solid #22672A;
+	border-radius: 100px;
+	width: 30px;
 	height: 30px;
+	cursor: pointer;
+}
+
+.avatar:hover {
+	border: 2px solid #22672A;
+}
+
+.profilemenu {
+	position: absolute;
+	margin: 0px;
+	right: 30px;
+	top: 5px;
+	width: 200px;
+	background-color: white;
+	padding: 10px;
+	z-index: 10000;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
+
+.loggedin {
+	color: black;
+	margin-bottom: 0px;
+}
+
+.avatarname {
+	color: black;
+	margin-top: 0px;
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #CACACA;
+	font-weight: bold;
+}
+
+.profilelist {
+	margin-bottom: 0px;
+	color: #001E70;
+	cursor: pointer;
+}
+
+.bottom-nav {
+	display: flex;
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	align-items: center;
+	flex-direction: row;
+	background-color: white;
+	margin-top: 45px;
+	border-bottom: 2px solid #22762A;
+}
+
+.icons {
+	display: flex;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: center;
+	position: absolute;
+	flex-wrap: nowrap;
+	left: 50%;
+	height: 100%;
+	background-color: white;
+	transform: translateX(-50%);
+	width: 600px;
 }
 
 .signout {
-	float: right;
-	margin: 10px 30px 0 0;
 	font-weight: bold;
 	font-size: 12px;
+}
+
+.navicon {
+	padding-top: 6px;
+	text-decoration: none !important;
+	width: 120px;
+	height: 48px;
+	font-size: 12px;
+}
+
+.navicon:hover {
+	background-color: #CEE3D1;
+	border-top: 2px solid #013007;
+	transition: 0.5s;
+}
+
+.navicon .icontext {
+	padding: 0;
+	margin: 0;
 }

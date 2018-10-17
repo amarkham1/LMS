@@ -1,9 +1,64 @@
 .container {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0px;
+    background: #EAEAEA;
+}
+
+.left-col {
+	margin: 110px 18px 8px 8px;
+	margin-top: 110px;
+	margin-right: 18px;
+	margin-left: 8px;
+	width: calc(60% - 26px);
+	float: left;
+}
+
+.my-active-deals {
 	background-color: white;
-	margin: 100px 50px 50px 130px;
+	flex: 1;
 	padding: 20px;
-	position: relative;
-	height: 100%;
+	margin-bottom: 10px;
+	overflow: auto;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
+
+.recent-activity {
+	background-color: white;
+	flex: 1;
+	padding: 20px;
+	overflow: auto;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
+
+.my-watchlist {
+
+}
+
+.company-wise {
+
+}
+
+.right-col {
+	float: right;
+	margin-top: 110px;
+	margin-right: 10px;
+	margin-left: 5px;
+	width: calc(40% - 15px);
+}
+
+.company-stats {
+	background-color: white;
+	flex: 1;
+	padding: 20px;
+	overflow: auto;
+	margin-bottom: 10px;
 	border-style: solid;
 	border-width: 0.5px;
 	border-color: #CACACA;

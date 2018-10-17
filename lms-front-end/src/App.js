@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import SideNav from './components/SideNav/sidenav.js';
+import TopNav from './components/TopNav/topnav.js';
 import Body from './components/Body/body.js';
 import Signin from './components/Signin/signin.js';
 import Register from './components/Register/register.js';
 
 const initialState = {
 	input: '',
-	route: 'signin',
+	route: 'home',
 	isSignedIn: false,
 	user: {
 		id: '',
-		name: '',
+		firstName: '',
+    lastName: '',
 		email: '',
 		joined: ''
 	}
@@ -26,7 +27,8 @@ class App extends Component {
   loadUser = (data) => {
   	this.setState({user : {
   		id: data.id,
-  		name: data.name,
+  		firstName: data.firstname,
+      lastName: data.lastname,
   		email: data.email,
   		joined: data.joined
   	}})
@@ -44,12 +46,16 @@ class App extends Component {
   render() {
   	const { isSignedIn, route } = this.state;
     return (
-      <div className="App">
+      <div className="App body">
       	{ route === 'home'
       	  ? <div>
-		        <SideNav />
-		        <Body />
-		    </div>
+		          <TopNav 
+                firstName={this.state.user.firstName}
+                lastName={this.state.user.lastName}
+                onRouteChange={this.onRouteChange}
+              />
+		          <Body />
+		        </div>
 		   : (
 		   	  route === 'signin'
 		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 

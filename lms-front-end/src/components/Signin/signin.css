@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
 /* Rectangle 3: */
-background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
+  background: #EAEAEA;
 }
 
 
@@ -28,7 +28,7 @@ background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
   position: absolute;
   width: 320px;
   left:50%;
-  top:50%;
+  top:40%;
   margin-left: -160px;
   margin-top: -160px;
   border-style: solid;

@@ -101,11 +101,11 @@ class Register extends Component {
 			})
 		})
 		  .then(response => response.json())
-		  .then(exists => {
+		  /*.then(exists => {
 		  	if(exists) {
 		  		this.setState({userExists: true})
 		  	}
-		  })
+		  })*/
 		  .then(user => {
 		  	if(user) {
 		  		console.log("user??");
