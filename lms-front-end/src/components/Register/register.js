@@ -111,7 +111,7 @@ class Register extends Component {
 		  		this.props.loadUser(user)
 		  		this.props.onRouteChange('home');
 		  	} 
-		  })
+		})
 	}
 
 	handleBlur = (field) => (event) => {

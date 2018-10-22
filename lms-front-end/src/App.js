@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import TopNav from './components/TopNav/topnav.js';
-import Body from './components/Body/body.js';
+import Home from './components/Home/home.js';
 import Signin from './components/Signin/signin.js';
 import Register from './components/Register/register.js';
+import Properties from './components/Properties/properties.js';
+import Deals from './components/Deals/deals.js';
+import DealEdit from './components/Deals/DealEdit/dealedit.js';
 
 const initialState = {
 	input: '',
-	route: 'signin',
-	isSignedIn: false,
+    //change to 'signin' and false
+	route: 'deals',
+  isSignedIn: true,
+    //change to 'signin' and false
 	user: {
 		id: '',
 		firstName: '',
     lastName: '',
 		email: '',
 		joined: ''
-	}
+	},
+  dealadd: false,
 }
 
 class App extends Component {
@@ -41,7 +47,8 @@ class App extends Component {
       case 'properties':   
       case 'tenants': 
       case 'deals':    
-      case 'reports': 
+      case 'reports':
+      case 'deals/add':
           this.setState({isSignedIn: true})
           break;
       default:
@@ -63,32 +70,32 @@ class App extends Component {
         />
       	{ route === 'home'
       	  ? <div>
-		          <Body />
+		          <Home />
 		        </div>
 		   : (
           route === 'portfolios'
           ? <div>
-              <Body />Portfolio
+              <Home />
             </div>
           : (
             route === 'properties'
             ? <div>
-               <Body />Properties
+               <Properties />
             </div>
             : (
               route === 'tenants'
               ? <div>
-                  <Body />Tenants
+                  <Home />
                 </div>
                 : (
                   route === 'deals'
                   ? <div>
-                      <Body />Deals
+                      <Deals onRouteChange={this.onRouteChange}/>
                     </div>
                     : (
                       route === 'reports'
                       ? <div>
-                          <Body />Reports
+                          <Home />
                         </div>
                         : (
                 		   	  route === 'signin'

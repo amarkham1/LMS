@@ -1,8 +1,7 @@
 import React from 'react';
-import './body.css';
-import Table from '../Table/table.js';
+import './home.css';
 
-const Body = () => {
+const Home = () => {
 	return (
 		<div className="container">
 		  <div className="left-col">
@@ -48,4 +47,4 @@ Suspendisse ultrices nec
 	);
 }
 
-export default Body;
+export default Home;
