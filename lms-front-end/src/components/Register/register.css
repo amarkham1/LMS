@@ -26,9 +26,8 @@ background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
   width: 320px;
   float: left;
   background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
-
-  border-radius: 8px;
-transition: all 0.5s;
+  border-radius: 6px;
+  transition: all 0.5s;
 }
 
 .cent_active {

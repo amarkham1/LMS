@@ -249,7 +249,7 @@ class Register extends Component {
 					            onClick={this.onSubmitSignIn}
 			            	/>
 			            ) : (
-								<input 
+							<input 
 					            type="submit" 
 					            value="REGISTER" 
 					            className="btn_sign"

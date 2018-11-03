@@ -1,6 +1,6 @@
 const handleDealEdit = (req, res, db, bcrypt) => {
-  const { tenant, property, unit } = req.body;
-  if (!tenant || !property || !unit) {
+  const { tenant, property, unit, llbroker, ttbroker } = req.body;
+  if (!tenant || !property || !unit || !llbroker || !ttbroker) {
     return res.status(400).json('incorrect form submission');
   }
     db.transaction(trx => {
@@ -8,6 +8,9 @@ const handleDealEdit = (req, res, db, bcrypt) => {
         tenant: tenant,
         property: property,
         unit: unit,
+        llbroker: llbroker,
+        ttbroker: ttbroker,
+        creationdate: new Date(),
       })
       .into('deals')
       .returning('*')

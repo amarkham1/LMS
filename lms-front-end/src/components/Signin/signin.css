@@ -42,15 +42,13 @@
   width: 320px;
   float: left;
   background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
-
-  border-radius: 8px;
-transition: all 0.5s;
+  border-radius: 6px;
+  transition: all 0.5s;
 }
 
 .cent_active {
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
 }
-
 
 .cont_tabs_login {
 position: relative;

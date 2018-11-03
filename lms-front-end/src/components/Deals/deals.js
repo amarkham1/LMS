@@ -1,6 +1,7 @@
 import React from 'react';
 import './deals.css';
 import DealEdit from './DealEdit/dealedit.js';
+import AddDealModal from '../Modals/AddDealModal/adddealmodal.js';
 
 class Deals extends React.Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ class Deals extends React.Component {
 		this.state = {
 			dealsdata: [],
 			isLoading: true,
-			dealSelected: false,
+			dealSelected: true,
 			dealid: null,
 			dealadd: false,
 		}
@@ -37,6 +38,10 @@ class Deals extends React.Component {
 
 	componentDidUpdate() {
 		this.fetchDeals();
+	}
+
+	handleDealClick() {
+		this.setState({dealSelected: true})
 	}
 
 	handleDealAdd() {
@@ -72,47 +77,81 @@ class Deals extends React.Component {
 	  const { onRouteChange } = this.props;
 		return (
 			<div className="container">
-			{ this.state.dealadd ? (
-				<DealEdit onRouteChange={this.onRouteChange} handleDealNoAdd={this.handleDealNoAdd}/>
-			) : (
+			  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd}/>
 				<div className="dealslist">
-					<input className="btn_add" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
+			 	  <div className="buttons">
+					<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
+					{ this.state.dealSelected &&
+						<input className="btn" type="button" value="EDIT DEAL" />
+					}
+				  </div>
+				  <div className="table">
 					<table>
 						<thead>
 							<tr>
-								<th>Tenant</th>
-								<th>Property</th>
-								<th>Unit</th>
-								<th>GLA (SF)</th>
-								<th>Status</th>
-								<th>Landlord Broker</th>
-								<th>Tenant Broker</th>
-								<th>Commencement Date</th>
-								<th>Adj. NER</th>
-								<th>Total Deal Costs</th>
+								<th className="big title left">Tenant</th>
+								<th className="mid title left">Property</th>
+								<th className="small title left">Unit</th>
+								<th className="small title left">GLA (SF)</th>
+								<th className="mid title left">Status</th>
+								<th className="mid title left">Landlord Broker</th>
+								<th className="mid title left">Tenant Broker</th>
+								<th className="mid title left">Commencement Date</th>
+								<th className="small title left">Adj. NER</th>
+								<th className="mid title left">Total Deal Costs</th>
 							</tr>
 						</thead>
 						<tbody>
 							{
 								this.state.dealsdata.map(row => (
 									<tr>
-										<td>{row.tenant}</td>
-										<td>{row.property}</td>
-										<td>{row.unit}</td>
-										<td>{row.gla}</td>
-										<td>{row.status}</td>
-										<td>{row.llbroker}</td>
-										<td>{row.ttbroker}</td>
-										<td>{row.cdate}</td>
-										<td>{row.adjner}</td>
-										<td>{row.dealcosts}</td>
+										<td 
+											className="mid left rows toprow" 
+											onClick={this.state.handleDealClick}
+										>{row.tenant}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.property}</td>
+										<td 
+											className="small left rows"
+											onClick={this.state.handleDealClick}
+										>{row.unit}</td>
+										<td 
+											className="small left rows"
+											onClick={this.state.handleDealClick}
+										>{row.gla}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.status}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.llbroker}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.ttbroker}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.cdate}</td>
+										<td 
+											className="small left rows"
+											onClick={this.state.handleDealClick}
+										>{row.adjner}</td>
+										<td 
+											className="mid left rows"
+											onClick={this.state.handleDealClick}
+										>{row.dealcosts}</td>
 									</tr>
 								))
 							}  
 						</tbody>
 					</table>
+				  </div>
 				</div>
-			)}
 			</div>
 		);
 	}
