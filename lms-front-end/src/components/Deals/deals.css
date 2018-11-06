@@ -18,6 +18,11 @@
 	margin-right: 15px;
 }
 
+.btn:hover {
+	background-color: #22672A;
+	color: white;
+}
+
 .dealslist {
 	margin: 120px 10px 10px 10px;
 	background-color: white;
@@ -32,44 +37,3 @@
 	box-shadow: 1px 1px 3px #CACACA;
 }
 
-.color {
-	background-color: red;
-}
-
-.title {
-	border-bottom: 1px solid #CACACA;
-	height: 30px;
-	margin-bottom: 40px;
-	font-size: 13px;
-}
-
-.padding {
-	margin-left: 5px;
-	margin-right: 20px;
-}
-
-.toprow {
-	margin-top: 50px;
-}
-
-.small {
-	width: 50px;
-}
-
-.mid {
-	width: 150px;
-}
-
-.big {
-	width: 200px;
-}
-
-.rows {
-	height: 25px;
-	font-size: 13px;
-}
-
-.left {
-	text-align: left;
-	padding-left: 10px;
-}

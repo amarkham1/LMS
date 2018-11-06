@@ -255,14 +255,12 @@ class AddDealModal extends React.Component {
             { isDisabled ? (
               <input 
                 type="submit" 
-                value="ADD DEAL" 
                 className="button add-button-error"
                 onClick={ (event) => this.handleSubmit(event)}
               />
             ) : (
               <input 
                 type="submit" 
-                value="ADD DEAL" 
                 className="button add-button"
                 onClick={ (event) => this.handleSubmit(event)}
               />
@@ -270,7 +268,6 @@ class AddDealModal extends React.Component {
 
             <input
               type="cancel"
-              value="CANCEL"
               className="button cancel-button"
               onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
             />

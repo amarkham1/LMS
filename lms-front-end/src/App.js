@@ -21,6 +21,7 @@ const initialState = {
 		email: '',
 		joined: ''
 	},
+  dealid: '',
   dealadd: false,
 }
 
@@ -38,6 +39,15 @@ class App extends Component {
   		email: data.email,
   		joined: data.joined
   	}})
+  }
+
+  loadDeal = (deal) => {
+    this.setState((state) => ({
+      dealid: deal
+    }));
+    console.log(this.state.dealid, "hi");
+
+    
   }
 
   onRouteChange = (route) => {
@@ -59,12 +69,12 @@ class App extends Component {
   }
 
   render() {
-  	const { isSignedIn, route } = this.state;
+  	const { isSignedIn, route, dealid, dealadd, user } = this.state;
     return (
       <div className="App body">
         <TopNav 
-          firstName={this.state.user.firstName}
-          lastName={this.state.user.lastName}
+          firstName={user.firstName}
+          lastName={user.lastName}
           onRouteChange={this.onRouteChange}
           isSignedIn={isSignedIn}
         />
@@ -90,18 +100,23 @@ class App extends Component {
                 : (
                   route === 'deals'
                   ? <div>
-                      <Deals onRouteChange={this.onRouteChange}/>
+                      <Deals loadDeal = {this.loadDeal} onRouteChange={this.onRouteChange}/>
                     </div>
                     : (
-                      route === 'reports'
+                      route === 'dealedit'
                       ? <div>
-                          <Home />
+                          <DealEdit dealid={dealid}/>
                         </div>
                         : (
-                		   	  route === 'signin'
-                		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
-                		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
-                		   	  ))))))
+                          route === 'reports'
+                          ? <div>
+                              <Home />
+                            </div>
+                            : (
+                    		   	  route === 'signin'
+                    		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
+                    		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
+                    		   	  )))))))
 		}
       </div>
     );

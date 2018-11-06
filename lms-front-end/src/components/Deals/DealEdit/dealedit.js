@@ -9,7 +9,18 @@ class DealEdit extends React.Component {
 			tenant: '',
 			property: '',
 			unit: '',
+			gla: '',
+			status: '',
+			llbroker: '',
+			ttbroker: '',
+			cdate: '',
+			adjner: '',
+			dealcosts: '',
 		}
+	}
+
+	componentDidMount() {
+		console.log(this.props.dealid);
 	}
 
 	onTenantChange = (event) => {
@@ -44,6 +55,7 @@ class DealEdit extends React.Component {
 	}
 
 	render() {
+		const { dealid } = this.props;
 		return (
 
 			<div className="container"> 
@@ -51,7 +63,7 @@ class DealEdit extends React.Component {
 			    <input 
 			    	type="text" 
 			    	className="plug" 
-			    	placeholder="TENANT NAME" 
+			    	placeholder={dealid} 
 			    	name="tenant" 
 			    	value={this.state.tenant}
 			    	onChange={this.onTenantChange}

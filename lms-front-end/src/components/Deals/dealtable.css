@@ -1,0 +1,50 @@
+.active {
+	background-color: #BFD6C2 !important;
+}
+
+.title {
+	font-size: 13px;
+}
+
+.toprow {
+	margin-top: 50px;
+}
+
+.small {
+	width: 50px;
+}
+
+.mid {
+	width: 150px;
+}
+
+.big {
+	width: 200px;
+}
+
+.rows {
+	height: 25px;
+	font-size: 13px;
+}
+
+.titlerow {
+	background-color: #22672A;
+	color: white;
+	border-bottom: 1px solid #CACACA;
+	height: 40px;
+	margin-bottom: 40px;
+
+}
+
+.tr {
+	border-bottom: 1px solid #EAEAEA;
+}
+
+.tr:hover {
+	background-color: #EAEAEA;
+}
+
+.left {
+	text-align: left;
+	padding-left: 10px;
+}
