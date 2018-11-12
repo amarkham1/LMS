@@ -103,20 +103,15 @@ class App extends Component {
                       <Deals loadDeal = {this.loadDeal} onRouteChange={this.onRouteChange}/>
                     </div>
                     : (
-                      route === 'dealedit'
-                      ? <div>
-                          <DealEdit dealid={dealid}/>
-                        </div>
-                        : (
-                          route === 'reports'
-                          ? <div>
-                              <Home />
-                            </div>
-                            : (
-                    		   	  route === 'signin'
-                    		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
-                    		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
-                    		   	  )))))))
+                        route === 'reports'
+                        ? <div>
+                            <Home />
+                          </div>
+                          : (
+                  		   	  route === 'signin'
+                  		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
+                  		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
+                  		   	  ))))))
 		}
       </div>
     );

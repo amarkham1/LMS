@@ -197,85 +197,88 @@ class AddDealModal extends React.Component {
     const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
     return (
       <div className={showHideClassName}>
+        <React.Fragment>
         <section className='modal-main'>
-         { this.state.loaded && ([
-          <div className="modal-title">Add New Deal</div>,
-          <div className="modal-body">
+         { this.state.loaded && (
+            <div className="modal-title">Add New Deal</div>,
+            <div className="modal-body">
 
-            <p className={shouldMarkError('tenant') ? "input-title-error" : "input-title"}>Tenant Name:</p>
-            <Select 
-              options={this.state.tenantDropdown}
-              className="form-input"
-              classNamePrefix="form-input"
-              onChange={this.onTenantChange.bind(this)}
-              onBlur={this.handleBlur('tenant')}
-            />
+              <p className={shouldMarkError('tenant') ? "input-title-error" : "input-title"}>Tenant Name:</p>
+              <Select 
+                options={this.state.tenantDropdown}
+                className="form-input"
+                classNamePrefix="form-input"
+                onChange={this.onTenantChange.bind(this)}
+                onBlur={this.handleBlur('tenant')}
+              />
 
-            <p className={shouldMarkError('property') ? "input-title-error" : "input-title"}>Property:</p>
-            <Select 
-              options={this.state.propertyDropdown}
-              className="form-input"
-              classNamePrefix="form-input"
-              onChange={this.onPropertyChange.bind(this)}
-              onBlur={this.handleBlur('property')}
-            />
+              <p className={shouldMarkError('property') ? "input-title-error" : "input-title"}>Property:</p>
+              <Select 
+                options={this.state.propertyDropdown}
+                className="form-input"
+                classNamePrefix="form-input"
+                onChange={this.onPropertyChange.bind(this)}
+                onBlur={this.handleBlur('property')}
+              />
 
-            { this.state.propertyLoaded ? ([
-                <p className={shouldMarkError('unit') ? "input-title-error" : "input-title"}>Unit:</p>,
-                <Select 
-                  options={this.state.unitDropdown}
-                  className="form-input"
-                  classNamePrefix="form-input"
-                  onChange={this.onUnitChange.bind(this)}
-                  onBlur={this.handleBlur('unit')}
+              { this.state.propertyLoaded ? ([
+                  <p className={shouldMarkError('unit') ? "input-title-error" : "input-title"}>Unit:</p>,
+                  <Select 
+                    options={this.state.unitDropdown}
+                    className="form-input"
+                    classNamePrefix="form-input"
+                    onChange={this.onUnitChange.bind(this)}
+                    onBlur={this.handleBlur('unit')}
+                  />
+                ]) : null }
+
+              <p className={shouldMarkError('llbroker') ? "input-title-error" : "input-title"}>Landlord Broker:</p>
+              <Select 
+                options={this.state.llbrokerDropdown}
+                className="form-input"
+                classNamePrefix="form-input"
+                onChange={this.onLLBrokerChange.bind(this)}
+                onBlur={this.handleBlur('llbroker')}
+              />
+
+              <p className={shouldMarkError('ttbroker') ? "input-title-error" : "input-title"}>Tenant Broker:</p>
+              <Select 
+                options={this.state.ttbrokerDropdown}
+                className="form-input"
+                classNamePrefix="form-input"
+                onChange={this.onTTBrokerChange.bind(this)}
+                onBlur={this.handleBlur('ttbroker')}
+              />
+
+              <div className="line"></div>
+              <div className="buttons">
+
+              { isDisabled ? (
+                <input 
+                  type="submit" 
+                  className="button add-button-error"
+                  onClick={ (event) => this.handleSubmit(event)}
                 />
-              ]) : null }
+              ) : (
+                <input 
+                  type="submit" 
+                  className="button add-button"
+                  onClick={ (event) => this.handleSubmit(event)}
+                />
+              )}
 
-            <p className={shouldMarkError('llbroker') ? "input-title-error" : "input-title"}>Landlord Broker:</p>
-            <Select 
-              options={this.state.llbrokerDropdown}
-              className="form-input"
-              classNamePrefix="form-input"
-              onChange={this.onLLBrokerChange.bind(this)}
-              onBlur={this.handleBlur('llbroker')}
-            />
-
-            <p className={shouldMarkError('ttbroker') ? "input-title-error" : "input-title"}>Tenant Broker:</p>
-            <Select 
-              options={this.state.ttbrokerDropdown}
-              className="form-input"
-              classNamePrefix="form-input"
-              onChange={this.onTTBrokerChange.bind(this)}
-              onBlur={this.handleBlur('ttbroker')}
-            />
-
-            <div className="line"></div>
-            <div className="buttons">
-
-            { isDisabled ? (
-              <input 
-                type="submit" 
-                className="button add-button-error"
-                onClick={ (event) => this.handleSubmit(event)}
+              <input
+                type="cancel"
+                className="button cancel-button"
+                onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
               />
-            ) : (
-              <input 
-                type="submit" 
-                className="button add-button"
-                onClick={ (event) => this.handleSubmit(event)}
-              />
-            )}
 
-            <input
-              type="cancel"
-              className="button cancel-button"
-              onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
-            />
-
+              </div>
             </div>
-          </div>
-         ])}
+          
+         )}
         </section>
+        </React.Fragment>
       </div>
     );
   }

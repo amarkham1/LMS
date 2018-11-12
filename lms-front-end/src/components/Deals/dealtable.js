@@ -23,7 +23,6 @@ class DealTable extends React.Component {
 	render() {
 		return (
 			<div className="table">
-				{ this.log }
 				<table>
 					<thead>
 						<tr class="titlerow">

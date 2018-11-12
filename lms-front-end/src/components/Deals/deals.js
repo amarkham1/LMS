@@ -11,8 +11,9 @@ class Deals extends React.Component {
 		this.state = {
 			dealsdata: [],
 			isLoading: true,
-			dealSelected: '',
+			dealSelected: '14',
 			dealadd: false,
+			dealedit: true,
 		}
 		this.handleDealAdd = this.handleDealAdd.bind(this);
 		this.handleDealNoAdd = this.handleDealNoAdd.bind(this);
@@ -39,7 +40,7 @@ class Deals extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.fetchDeals();
+		/* this.fetchDeals(); */
 	}
 
 	handleDealClick(row) {
@@ -57,8 +58,7 @@ class Deals extends React.Component {
 	}
 
 	handleDealEdit() {
-		this.props.loadDeal(this.state.dealSelected);
-		this.props.onRouteChange('dealedit');
+		this.setState({ dealedit: true })
 	}
 
 	onEditDeal() {
@@ -82,25 +82,33 @@ class Deals extends React.Component {
 		    })
 	}
 
-
-
 	render() {
 	  const { onRouteChange } = this.props;
 		return (
-			<div className="container">
-			  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd}/>
-				<div className="dealslist">
-			 	  <div className="buttons">
-					<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
-					{ this.state.dealSelected &&
-						<input className="btn" type="button" value="EDIT DEAL" onClick={this.handleDealEdit}/>
-					}
+		  <div>
+			  { !this.state.dealedit ? 
+			  	(
+			  	  <div className="container">
+				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd}/>
+					<div className="dealslist">
+				 	  <div className="buttons">
+						<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
+						{ this.state.dealSelected &&
+							<input className="btn" type="button" value="EDIT DEAL" onClick={this.handleDealEdit}/>
+						}
+					  </div>
+					  { !this.state.isLoading && 
+					  	<DealTable dealsdata={this.state.dealsdata} handleDealClick={this.handleDealClick} />
+					  }
+					</div>
 				  </div>
-				  { !this.state.isLoading && 
-				  	<DealTable dealsdata={this.state.dealsdata} handleDealClick={this.handleDealClick} />
-				  }
-				</div>
-			</div>
+				) : (
+				  <div className="container">
+				    <DealEdit dealid={this.state.dealSelected} />
+				  </div>
+				)
+			  }
+	 	  </div>
 		);
 	}
 }
