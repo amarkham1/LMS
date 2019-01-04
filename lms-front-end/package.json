@@ -17,6 +17,7 @@
     "react": "^16.5.2",
     "react-bootstrap-dropdown-menu": "^1.1.15",
     "react-contextmenu": "^2.9.4",
+    "react-datepicker": "^1.8.0",
     "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
     "react-router": "^4.3.1",

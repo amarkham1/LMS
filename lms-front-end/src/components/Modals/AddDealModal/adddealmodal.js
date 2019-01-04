@@ -194,58 +194,59 @@ class AddDealModal extends React.Component {
       return errors[field] && this.state.touched[field];
     }
 
-    const showHideClassName = this.props.show ? 'modal display-block' : 'modal display-none';
+    const showHideClassName = this.props.show ? 'deal-modal deal-display-block' : 'deal-modal deal-display-none';
     return (
       <div className={showHideClassName}>
         <React.Fragment>
-        <section className='modal-main'>
+        <section className='deal-modal-main'>
          { this.state.loaded && (
-            <div className="modal-title">Add New Deal</div>,
-            <div className="modal-body">
+           <React.Fragment>
+            <div className="deal-modal-title">Add New Deal</div>,
+            <div className="deal-modal-body">
 
-              <p className={shouldMarkError('tenant') ? "input-title-error" : "input-title"}>Tenant Name:</p>
+              <p className={shouldMarkError('tenant') ? "deal-input-title-error" : "deal-input-title"}>Tenant Name:</p>
               <Select 
                 options={this.state.tenantDropdown}
-                className="form-input"
-                classNamePrefix="form-input"
+                className="deal-form-input"
+                classNamePrefix="deal-form-input"
                 onChange={this.onTenantChange.bind(this)}
                 onBlur={this.handleBlur('tenant')}
               />
 
-              <p className={shouldMarkError('property') ? "input-title-error" : "input-title"}>Property:</p>
+              <p className={shouldMarkError('property') ? "deal-input-title-error" : "deal-input-title"}>Property:</p>
               <Select 
                 options={this.state.propertyDropdown}
-                className="form-input"
-                classNamePrefix="form-input"
+                className="deal-form-input"
+                classNamePrefix="deal-form-input"
                 onChange={this.onPropertyChange.bind(this)}
                 onBlur={this.handleBlur('property')}
               />
 
               { this.state.propertyLoaded ? ([
-                  <p className={shouldMarkError('unit') ? "input-title-error" : "input-title"}>Unit:</p>,
+                  <p className={shouldMarkError('unit') ? "deal-input-title-error" : "deal-input-title"}>Unit:</p>,
                   <Select 
                     options={this.state.unitDropdown}
-                    className="form-input"
-                    classNamePrefix="form-input"
+                    className="deal-form-input"
+                    classNamePrefix="deal-form-input"
                     onChange={this.onUnitChange.bind(this)}
                     onBlur={this.handleBlur('unit')}
                   />
                 ]) : null }
 
-              <p className={shouldMarkError('llbroker') ? "input-title-error" : "input-title"}>Landlord Broker:</p>
+              <p className={shouldMarkError('llbroker') ? "deal-input-title-error" : "deal-input-title"}>Landlord Broker:</p>
               <Select 
                 options={this.state.llbrokerDropdown}
-                className="form-input"
-                classNamePrefix="form-input"
+                className="deal-form-input"
+                classNamePrefix="deal-form-input"
                 onChange={this.onLLBrokerChange.bind(this)}
                 onBlur={this.handleBlur('llbroker')}
               />
 
-              <p className={shouldMarkError('ttbroker') ? "input-title-error" : "input-title"}>Tenant Broker:</p>
+              <p className={shouldMarkError('ttbroker') ? "deal-input-title-error" : "deal-input-title"}>Tenant Broker:</p>
               <Select 
                 options={this.state.ttbrokerDropdown}
-                className="form-input"
-                classNamePrefix="form-input"
+                className="deal-form-input"
+                classNamePrefix="deal-form-input"
                 onChange={this.onTTBrokerChange.bind(this)}
                 onBlur={this.handleBlur('ttbroker')}
               />
@@ -269,14 +270,15 @@ class AddDealModal extends React.Component {
 
               <input
                 type="cancel"
+                value="Cancel"
                 className="button cancel-button"
                 onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
               />
 
               </div>
             </div>
-          
-         )}
+        </React.Fragment>
+       )}
         </section>
         </React.Fragment>
       </div>

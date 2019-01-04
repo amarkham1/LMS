@@ -1,29 +1,52 @@
 import React from 'react';
 import './dealedit.css';
+import Select from 'react-select';
 import moment from 'moment';
+import AddNegotiationModal from '../../Modals/AddNegotiationModal/addnegotiationmodal.js';
+
+
 
 class DealEdit extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			isLoading: true,
+			isLoadingDeal: true,
+			isloadingNegs: true,
 			deal: [],
+			dealnegs: [],
 			dealSummaryEdit: false,
+			negadd: false,
+			dealid: this.props.dealid,
 		}
+		this.handleNegAdd = this.handleNegAdd.bind(this);
+		this.handleNegNoAdd = this.handleNegNoAdd.bind(this);
 	}
 
 	loadDeal() {
-		const fetchURL = `http://localhost:3000/deals/13`; /* ${this.props.dealid} */
-		fetch(fetchURL, {
+		const fetchURLdeals = `http://localhost:3000/deals/13`; /* ${this.props.dealid} */
+		fetch(fetchURLdeals, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		})
 		    .then(response => response.json())
 		    .then(deal => {
 		  	  	this.setState({ 
-		  	  		isLoading: false,
+		  	  		isLoadingDeal: false,
 		  	  		deal: deal,
+		  	  	})
+		    })
+
+		const fetchURLdealnegs = `http://localhost:3000/dealnegs/13`; /* ${this.props.dealid} */
+		fetch(fetchURLdealnegs, {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
+		})
+		    .then(response => response.json())
+		    .then(dealnegs => {
+		  	  	this.setState({ 
+		  	  		isLoadingNegs: false,
+		  	  		dealnegs: dealnegs,
 		  	  	})
 		    })
 	}
@@ -42,6 +65,14 @@ class DealEdit extends React.Component {
 
 	onUnitChange = (event) => {
 		this.setState({unit: event.target.value})
+	}
+
+	handleNegAdd() {
+		this.setState({negadd: true});
+	}
+
+	handleNegNoAdd() {
+		this.setState({negadd: false});
 	}
 
 
@@ -69,6 +100,7 @@ class DealEdit extends React.Component {
 			<div className="container">
 			  { !this.state.isLoading ? ( 
 				  <React.Fragment>
+				  <AddNegotiationModal handleNegNoAdd={this.handleNegNoAdd} show={this.state.negadd} dealid={this.state.dealid}/>
 				  <div className="left-col">
 				    <div className="deal-summary">
 				      <div className="innerbox split float-left">
@@ -281,36 +313,7 @@ class DealEdit extends React.Component {
 						 </div>
 				     </div>
 				    </div>
-				    <div className="negotiation-detail">
-				        <div className="innerbox full">
-					      <p className="boxtitle">NEGOTIATION DETAILS</p> 
-					        <div className="buttons">
-					            <input className="btn" onClick={this.handleNegotiationAdd} type="button" value="ADD" />
-					            <input className="btn" onClick={this.handleNegotiationCopy} type="button" value="COPY" />
-					            <input className="btn" onClick={this.handleNegotiationEdit} type="button" value="EDIT" />
-					            <input className="btn" onClick={this.handleNegotiationActive} type="button" value="MARK AS ACTIVE" />
-					        </div>
-					        <div className="negotiationtable">
-						        <table>
-									<thead>
-										<tr class="titlerow">
-											<th className="big title left">Tenant</th>
-											<th className="mid title left">Property</th>
-											<th className="small title left">Unit</th>
-											<th className="small title left">GLA (SF)</th>
-											<th className="mid title left">Status</th>
-											<th className="mid title left">Landlord Broker</th>
-											<th className="mid title left">Tenant Broker</th>
-											<th className="mid title left">Commencement Date</th>
-											<th className="small title left">Adj. NER</th>
-											<th className="mid title left">Total Deal Costs</th>
-										</tr>
-									</thead>
-									
-								</table>
-					        </div>
-						</div>
-				    </div>
+				    
 				  </div>
 				  <div className="right-col">
 				    <div className="files">
@@ -321,6 +324,92 @@ class DealEdit extends React.Component {
 					</p>
 				    </div>
 				  </div>
+				  <div className="bottom-row">
+				    <div className="negotiation-detail">
+				        <div className="innerbox full">
+					      <p className="boxtitle">NEGOTIATION DETAILS</p> 
+					        <div className="buttons">
+					            <input className="btn" onClick={this.handleNegAdd} type="button" value="ADD" />
+					            <input className="btn" onClick={this.handleNegotiationCopy} type="button" value="COPY" />
+					            <input className="btn" onClick={this.handleNegotiationEdit} type="button" value="EDIT" />
+					            <input className="btn" onClick={this.handleNegotiationActive} type="button" value="MARK AS ACTIVE" />
+					        </div>
+					        <div className="negotiationtable">
+						        <table>
+									<thead>
+										<tr class="titlerow">
+											<th className="mid title left">Property</th>
+											<th className="small title left">Unit(s)</th>
+											<th className="small title left">GLA (SF)</th>
+											<th className="mid title left">Status</th>
+											<th className="mid title left">Date Added</th>
+											<th className="mid title left">Fixturing Date</th>
+											<th className="mid title left">Commencement Date</th>
+											<th className="mid title left">Rent</th>
+											<th className="mid title left">TI</th>
+											<th className="mid title left">Int. Commission</th>
+											<th className="mid title left">Ext. Commission</th>
+											<th className="mid title left">LLW</th>
+											<th className="small title left">Market NER</th>
+											<th className="small title left">Adj. NER</th>
+											<th className="mid title left">Total Deal Costs</th>
+										</tr>
+									</thead>
+									<tbody>
+										{
+											this.state.dealsdata.map(row => (
+												<tr
+												  key={row.id} 
+												  className={ this.state.dealSelected === row.id ? "tr active" : "tr" }>
+													<td 
+														className="mid left rows toprow"
+														onClick={() => this.handleDealClick(row)}
+													>{row.tenant}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.property}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.unit}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.gla}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.status}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.llbroker}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.ttbroker}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.cdate}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.adjner}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealClick(row)}
+													>{row.dealcosts}</td>
+												</tr>
+											))
+										}  
+									</tbody>
+								</table>
+					        </div>
+						</div>
+					  </div>
+				    </div>
 				  </React.Fragment>
 			 ) : null }
 			</div>

@@ -1,4 +1,4 @@
-.modal {
+.deal-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   font-size: 14px;
 }
 
- .modal-main {
+ .deal-modal-main {
   position:fixed;
   text-align: left;
   width: 400px;
@@ -18,7 +18,7 @@
   transform: translate(-50%,-50%);
 }
 
-.modal-title {
+.deal-modal-title {
   display: flex;
   height: 40px;
   width: 100%;
@@ -28,22 +28,24 @@
   position: fixed;
   text-align: left;
   padding-left: 20px;
+  margin-bottom: 0 !important;
   background-color: #22672A;
 }
 
-.modal-body {
+.deal-modal-body {
   display: flex;
   width: 100%;
   position: fixed;
   align-items: left;
   padding-left: 40px;
+  padding-top: 20px;
   padding-right: 40px;
   flex-direction: column;
   background-color: white;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
-.form-input {
+.deal-form-input {
   position: relative;
   width: 100%;
   height: 30px;
@@ -60,13 +62,13 @@
   color: red;
 }
 
-.input-title {
+.deal-input-title {
   margin-top: 0px;
   margin-bottom: 5px;
   margin-left: 0px;
 }
 
-.input-title-error {
+.deal-input-title-error {
   margin-top: 0px;
   margin-bottom: 5px;
   margin-left: 0px;
@@ -119,10 +121,10 @@
   box-shadow: 0px 2px 20px 2px rgba(128,128,128,0.50);
 }
 
-.display-block {
+.deal-display-block {
   display: block;
 }
 
-.display-none {
+.deal-display-none {
   display: none;
 }

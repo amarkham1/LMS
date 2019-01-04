@@ -11,9 +11,9 @@ class Deals extends React.Component {
 		this.state = {
 			dealsdata: [],
 			isLoading: true,
-			dealSelected: '14',
+			dealSelected: '14', /* set to '' */
 			dealadd: false,
-			dealedit: true,
+			dealedit: true, /* set to false */
 		}
 		this.handleDealAdd = this.handleDealAdd.bind(this);
 		this.handleDealNoAdd = this.handleDealNoAdd.bind(this);
@@ -91,7 +91,7 @@ class Deals extends React.Component {
 			  	  <div className="container">
 				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd}/>
 					<div className="dealslist">
-				 	  <div className="buttons">
+				 	  <div className="deal-buttons">
 						<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
 						{ this.state.dealSelected &&
 							<input className="btn" type="button" value="EDIT DEAL" onClick={this.handleDealEdit}/>

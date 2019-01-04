@@ -1,0 +1,234 @@
+.neg-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  z-index: 1;
+}
+
+ .neg-modal-main {
+  position:fixed;
+  text-align: left;
+  width: 700px !important;
+  height: 700px !important;
+  top:60% !important;
+  overflow-y: scroll !important;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.neg-modal-title {
+  display: flex;
+  height: 40px !important;
+  width: 100%;
+  font-size: 16px;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: white;
+  padding-top: 10px;
+  position: fixed;
+  text-align: left;
+  padding-left: 20px;
+  background-color: #22672A;
+}
+
+.subcategory {
+  margin-top: 0px;
+}
+
+.neg-modal-body {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 40px;
+  padding-right: 40px;
+  flex-direction: column;
+  overflow-y: scroll !important;
+  background-color: white;
+  margin-top: 40px;
+}
+
+.neg-modal-body-header {
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 0px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  height: 40px;
+  border-bottom: 2px solid #EAEAEA;
+  width: 100% !important;
+}
+
+.neg-header-sub {
+  margin-right: 50px;
+}
+
+.active-sub {
+  font-weight: bold;
+}
+
+.neg-boxcontainer {
+  width: 100%;
+  height: 300px;
+  padding-top: 20px;
+}
+
+.leftbox {
+  width: calc(50% - 15px);
+  margin: 0 15px 0 0;
+  height: 300px;
+  float: left;
+}
+
+.rightbox {
+  width: calc(50% - 15px);
+  margin: 0 0 0 15px;
+  height: 300px; 
+  float: right;
+}
+
+.input-box-left {
+  float: left;
+  font-style: italic;
+  padding-left: 10px;
+  width: 100px;
+  height: 35px;
+}
+
+.input-box-right {
+  float: right;
+  padding-left: 10px;
+  width: calc(100% - 100px);
+  height: 35px;
+}
+
+.input-box-container {
+  width: 100%;
+  height: auto;
+  padding-bottom: 80px;
+
+}
+
+.neg-form-input {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  margin-bottom: 20px !important;
+  float: left;
+}
+
+.neg-form-input-small {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px !important;
+  float: left;
+}
+
+.input-error {
+  margin-bottom: 5px !important;
+}
+
+.input-error-text {
+  color: red;
+}
+
+.input-title {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+}
+
+.input-title-error {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  color: red; 
+}
+
+.input-subtitle {
+
+}
+
+.line {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative;
+  float: center;
+  height: 1px;
+  background: #EAEAEA;
+}
+
+.neg-buttons {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  margin: 0;
+}
+
+.right {
+  margin: 0;
+}
+
+.button {
+  width: 100px !important;
+  border-radius: 8px;
+  padding: 0px 0px !important;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  position: relative;  
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.add-button {
+  background: rgba(34,103,42,0.74);
+  box-shadow: 0px 2px 20px 2px rgba(34,103,42,0.50);
+}
+
+.add-button-error {
+  background: rgba(202,202,202,0.74);
+  box-shadow: 0px 2px 20px 2px rgba(202,202,202,0.50);
+}
+
+.cancel-button {
+  background: rgba(128,128,128,0.74);
+  box-shadow: 0px 2px 20px 2px rgba(128,128,128,0.50);
+}
+
+.display-block {
+  display: block;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal-body-header {
+  display: flex;
+  float: left;
+}

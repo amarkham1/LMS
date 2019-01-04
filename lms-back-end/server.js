@@ -9,6 +9,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const deals = require('./controllers/deals');
 const dealedit = require('./controllers/dealedit');
+const dealneg = require('./controllers/dealneg');
 const adddealmodal = require('./controllers/adddealmodal');
 
 const db = knex({
@@ -33,6 +34,7 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.get('/deals', (req, res) => { deals.handleDealsGet(req, res, db)})
 app.get('/deals/:id', (req, res) => { deals.handleDealIDGet(req, res, db)})
 app.post('/dealsedit', (req, res) => { dealedit.handleDealEdit(req, res, db)})
+app.post('/dealneg/:id', (req, res) => { dealneg.handleDealNegEdit(req, res, db)})
 app.get('/adddealmodal/tenant', (req, res) => { adddealmodal.handleAddDealModalTenant(req, res, db)})
 app.get('/adddealmodal/property', (req, res) => { adddealmodal.handleAddDealModalProperty(req, res, db)})
 app.post('/adddealmodal/unit', (req, res) => { adddealmodal.handleAddDealModalUnit(req, res, db)})

@@ -22,7 +22,7 @@ class DealTable extends React.Component {
 
 	render() {
 		return (
-			<div className="table">
+			<div className="dealtable">
 				<table>
 					<thead>
 						<tr class="titlerow">
