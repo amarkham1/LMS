@@ -252,24 +252,6 @@ class AddNegotiationModal extends React.Component {
       return;
     }
 
-    console.log('dealid: ', this.props.dealid);
-    console.log('propertyname: ', this.state.propertyname);
-    console.log('unit: ', this.state.unit);
-    console.log('gla: ', this.state.gla);
-    console.log('status: ', this.state.status);
-    console.log('cdate: ', this.state.cdate);
-    console.log('fdate: ', this.state.fdate);
-    console.log('rent1: ', this.state.rent1);
-    console.log('rent1start: ', this.state.rent1start);
-    console.log('rent1months: ', this.state.rent1months);
-    console.log('rent1end: ', this.state.rent1end);
-    console.log('ti: ', this.state.ti);
-    console.log('intcomm: ', this.state.intcomm);
-    console.log('extcomm: ', this.state.extcomm);
-    console.log('llw: ', this.state.llw);
-    console.log('gfrent: ', this.state.gfrent);
-    console.log('gfrentstart: ', this.state.gfrentstart);
-    console.log('gfrentend: ', this.state.gfrentend);
     const fetchURL = `http://localhost:3000/dealneg/${this.props.dealid}`;
     fetch(fetchURL, {
       method: 'post',
@@ -300,8 +282,7 @@ class AddNegotiationModal extends React.Component {
       .then(dealneg => {
         if(dealneg) {
           this.props.handleNegNoAdd();
-          console.log("success");
-          console.log(dealneg);
+          this.props.loadDeal();
         } else { console.log("failure")}
       })
     this.stateClear();

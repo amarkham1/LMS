@@ -11,8 +11,8 @@ import DealEdit from './components/Deals/DealEdit/dealedit.js';
 const initialState = {
 	input: '',
     //change to 'signin' and false
-	route: 'deals',
-  isSignedIn: true,
+	route: 'signin',
+  isSignedIn: false,
     //change to 'signin' and false
 	user: {
 		id: '',

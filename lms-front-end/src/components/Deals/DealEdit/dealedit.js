@@ -13,6 +13,7 @@ class DealEdit extends React.Component {
 		this.state = {
 			isLoadingDeal: true,
 			isloadingNegs: true,
+			dealNegSelected: '',
 			deal: [],
 			dealnegs: [],
 			dealSummaryEdit: false,
@@ -37,7 +38,7 @@ class DealEdit extends React.Component {
 		  	  	})
 		    })
 
-		const fetchURLdealnegs = `http://localhost:3000/dealnegs/13`; /* ${this.props.dealid} */
+		const fetchURLdealnegs = `http://localhost:3000/dealneg/13`;
 		fetch(fetchURLdealnegs, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
@@ -48,11 +49,17 @@ class DealEdit extends React.Component {
 		  	  		isLoadingNegs: false,
 		  	  		dealnegs: dealnegs,
 		  	  	})
+		  	  	console.log('response', dealnegs);
+		  	  	console.log('state dealnegs', this.state.dealnegs);
 		    })
 	}
 
 	componentDidMount() {
 		this.loadDeal();
+	}
+
+	componentDidUpdate() {
+
 	}
 
 	onTenantChange = (event) => {
@@ -75,6 +82,11 @@ class DealEdit extends React.Component {
 		this.setState({negadd: false});
 	}
 
+	handleDealNegClick(row) {
+		this.setState({
+			dealNegSelected: row.id,
+		})
+	}
 
 	handleSubmit = () => {
 		fetch('http://localhost:3000/dealsedit', {
@@ -98,9 +110,9 @@ class DealEdit extends React.Component {
 		const { dealid } = this.props;
 		return (
 			<div className="container">
-			  { !this.state.isLoading ? ( 
+			  { (!this.state.isLoadingDeal && !this.state.isLoadingNegs) ? ( 
 				  <React.Fragment>
-				  <AddNegotiationModal handleNegNoAdd={this.handleNegNoAdd} show={this.state.negadd} dealid={this.state.dealid}/>
+				  <AddNegotiationModal handleNegNoAdd={this.handleNegNoAdd} show={this.state.negadd} dealid={this.state.dealid} loadDeal={this.loadDeal.bind(this)}/>
 				  <div className="left-col">
 				    <div className="deal-summary">
 				      <div className="innerbox split float-left">
@@ -337,7 +349,7 @@ class DealEdit extends React.Component {
 					        <div className="negotiationtable">
 						        <table>
 									<thead>
-										<tr class="titlerow">
+										<tr className="titlerow">
 											<th className="mid title left">Property</th>
 											<th className="small title left">Unit(s)</th>
 											<th className="small title left">GLA (SF)</th>
@@ -355,51 +367,71 @@ class DealEdit extends React.Component {
 											<th className="mid title left">Total Deal Costs</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody> 
 										{
-											this.state.dealsdata.map(row => (
+											this.state.dealnegs.map(row => (
 												<tr
 												  key={row.id} 
-												  className={ this.state.dealSelected === row.id ? "tr active" : "tr" }>
+												  className={ this.state.dealNegSelected === row.id ? "tr active" : "tr" }>
 													<td 
 														className="mid left rows toprow"
-														onClick={() => this.handleDealClick(row)}
-													>{row.tenant}</td>
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.propertyname}</td>
 													<td 
 														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
-													>{row.property}</td>
-													<td 
-														className="small left rows"
-														onClick={() => this.handleDealClick(row)}
+														onClick={() => this.handleDealNegClick(row)}
 													>{row.unit}</td>
 													<td 
 														className="small left rows"
-														onClick={() => this.handleDealClick(row)}
+														onClick={() => this.handleDealNegClick(row)}
 													>{row.gla}</td>
 													<td 
-														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
+														className="small left rows"
+														onClick={() => this.handleDealNegClick(row)}
 													>{row.status}</td>
 													<td 
 														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
-													>{row.llbroker}</td>
+														onClick={() => this.handleDealNegClick(row)}
+													>{ moment(row.currdate, "YYYY-MM-DD").format('MMM D, YYYY') }</td>
 													<td 
 														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
-													>{row.ttbroker}</td>
+														onClick={() => this.handleDealNegClick(row)}
+													>{moment(row.fdate, "YYYY-MM-DD").format('MMM D, YYYY')}</td>
 													<td 
 														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
-													>{row.cdate}</td>
+														onClick={() => this.handleDealNegClick(row)}
+													>{moment(row.cdate, "YYYY-MM-DD").format('MMM D, YYYY')}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.rent1}</td>
 													<td 
 														className="small left rows"
-														onClick={() => this.handleDealClick(row)}
-													>{row.adjner}</td>
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.ti}</td>
 													<td 
 														className="mid left rows"
-														onClick={() => this.handleDealClick(row)}
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.intcomm}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.extcomm}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.llw}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.llw}</td>
+													<td 
+														className="small left rows"
+														onClick={() => this.handleDealNegClick(row)}
+													>{row.llw}</td>
+													<td 
+														className="mid left rows"
+														onClick={() => this.handleDealNegClick(row)}
 													>{row.dealcosts}</td>
 												</tr>
 											))

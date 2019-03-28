@@ -23,6 +23,10 @@ const handleDealNegEdit = (req, res, db) => {
   if (!dealid || !propertyname || !unit || !gla || !status || !cdate || !fdate || !rent1 || !rent1end || !rent1start || !rent1months || !ti || !llw || !intcomm || !extcomm || !gfrent || !gfrentstart || !gfrentend) {
     return res.status(400).json('incorrect form submission');
   }
+
+  console.log('gla', gla, '   ti', ti, '   intcomm', intcomm, '   extcomm', extcomm, '   llw', llw, '    gf rent', gfrent);
+  dealcosts = gla * (Number(ti) + Number(intcomm) + Number(extcomm) + Number(llw) + Number(gfrent));
+
     db.transaction(trx => {
       trx.insert({
         dealid: dealid,
@@ -44,6 +48,7 @@ const handleDealNegEdit = (req, res, db) => {
         gfrent: gfrent,
         gfrentstart: gfrentstart,
         gfrentend: gfrentend,
+        dealcosts: dealcosts,
       })
       .into('dealdetail')
       .returning('*')
@@ -56,6 +61,20 @@ const handleDealNegEdit = (req, res, db) => {
     .catch(err => res.status(400).json(err))
 }
 
+const handleDealNegGet = (req, res, db) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json('deal does not exist');
+  }
+  db.select('*').from('dealdetail')
+    .where('dealid', '=', id)
+    .then(dealneg => {
+      res.json(dealneg)
+    })
+    .catch(err => res.status(400).json('error getting deal negotiation'))
+}
+
 module.exports = {
-  handleDealNegEdit: handleDealNegEdit
+  handleDealNegEdit: handleDealNegEdit,
+  handleDealNegGet: handleDealNegGet
 };

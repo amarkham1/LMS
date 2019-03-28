@@ -11,9 +11,9 @@ class Deals extends React.Component {
 		this.state = {
 			dealsdata: [],
 			isLoading: true,
-			dealSelected: '14', /* set to '' */
+			dealSelected: '', /* set to '' */
 			dealadd: false,
-			dealedit: true, /* set to false */
+			dealedit: false, /* set to false */
 		}
 		this.handleDealAdd = this.handleDealAdd.bind(this);
 		this.handleDealNoAdd = this.handleDealNoAdd.bind(this);
