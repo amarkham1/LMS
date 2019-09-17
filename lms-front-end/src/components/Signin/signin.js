@@ -19,6 +19,13 @@ class Signin extends React.Component {
 		this.setState({signInPassword: event.target.value})
 	}
 
+	onKeyPress = (event) => {
+		if (event.keyCode == 13 && event.shiftKey == false) {
+			event.preventDefault();
+			this.onSubmitSignIn();
+		}
+	}
+
 	onSubmitSignIn = () => {
 		fetch('http://localhost:3000/signin', {
 			method: 'post',
@@ -56,6 +63,7 @@ class Signin extends React.Component {
 		        </li>
 		      </ul>
 		      </div>
+		  <form onKeyDown={(event) => this.onKeyPress(event)}>
 		  <div className="cont_text_inputs">
 		    { this.state.signInError && (
 			    <div className="error-above">
@@ -80,10 +88,10 @@ class Signin extends React.Component {
 		    />  
 		    
 		    <p className="link_forgot_pass d_block" >Forgot Password ?</p>    
-		<div className="terms_and_cons d_none">
-		   
+			<div className="terms_and_cons d_none">
 		    </div>
-		      </div>
+		  </div>
+		  </form>
 		<div className="cont_btn">
 		     <input className="btn_sign" onClick={this.onSubmitSignIn} type="submit" value="SIGN IN" />
 		      </div>

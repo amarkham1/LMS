@@ -101,18 +101,17 @@ class Register extends Component {
 			})
 		})
 		  .then(response => response.json())
-		  .then(exists => {
+		  /*.then(exists => {
 		  	if(exists) {
 		  		this.setState({userExists: true})
 		  	}
-		  })
+		  })*/
 		  .then(user => {
 		  	if(user) {
-		  		console.log("user??");
 		  		this.props.loadUser(user)
 		  		this.props.onRouteChange('home');
 		  	} 
-		  })
+		})
 	}
 
 	handleBlur = (field) => (event) => {
@@ -250,7 +249,7 @@ class Register extends Component {
 					            onClick={this.onSubmitSignIn}
 			            	/>
 			            ) : (
-								<input 
+							<input 
 					            type="submit" 
 					            value="REGISTER" 
 					            className="btn_sign"

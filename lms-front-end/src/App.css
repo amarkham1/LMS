@@ -4,11 +4,9 @@
   text-align: center;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #f0f0f0;
-  font-family: 'Rubik';
+.body {
+  height: 100%;
+  margin: 0px;
 }
 
 .App-logo {

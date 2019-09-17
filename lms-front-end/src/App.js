@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
-import SideNav from './components/SideNav/sidenav.js';
-import Body from './components/Body/body.js';
+import TopNav from './components/TopNav/topnav.js';
+import Home from './components/Home/home.js';
 import Signin from './components/Signin/signin.js';
 import Register from './components/Register/register.js';
+import Properties from './components/Properties/properties.js';
+import Deals from './components/Deals/deals.js';
+import DealEdit from './components/Deals/DealEdit/dealedit.js';
 
 const initialState = {
 	input: '',
+    //change to 'signin' and false
 	route: 'signin',
-	isSignedIn: false,
+  isSignedIn: false,
+    //change to 'signin' and false
 	user: {
 		id: '',
-		name: '',
+		firstName: '',
+    lastName: '',
 		email: '',
 		joined: ''
-	}
+	},
+  dealid: '',
+  dealadd: false,
 }
 
 class App extends Component {
@@ -26,35 +34,84 @@ class App extends Component {
   loadUser = (data) => {
   	this.setState({user : {
   		id: data.id,
-  		name: data.name,
+  		firstName: data.firstname,
+      lastName: data.lastname,
   		email: data.email,
   		joined: data.joined
   	}})
   }
 
+  loadDeal = (deal) => {
+    this.setState((state) => ({
+      dealid: deal
+    }));
+    console.log(this.state.dealid, "hi");
+
+    
+  }
+
   onRouteChange = (route) => {
-  	if (route === 'signout') {
-  		this.setState(initialState)
-  	} else if (route === 'home') {
-  		this.setState({isSignedIn: true})
-  	}
+    switch(route) {
+      case 'home':
+      case 'portfolios':
+      case 'properties':   
+      case 'tenants': 
+      case 'deals':    
+      case 'reports':
+      case 'deals/add':
+          this.setState({isSignedIn: true})
+          break;
+      default:
+          this.setState(initialState)
+          break;
+    }
   	this.setState({route: route});
   }
 
   render() {
-  	const { isSignedIn, route } = this.state;
+  	const { isSignedIn, route, dealid, dealadd, user } = this.state;
     return (
-      <div className="App">
+      <div className="App body">
+        <TopNav 
+          firstName={user.firstName}
+          lastName={user.lastName}
+          onRouteChange={this.onRouteChange}
+          isSignedIn={isSignedIn}
+        />
       	{ route === 'home'
       	  ? <div>
-		        <SideNav />
-		        <Body />
-		    </div>
+		          <Home />
+		        </div>
 		   : (
-		   	  route === 'signin'
-		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
-		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
-		   	  )
+          route === 'portfolios'
+          ? <div>
+              <Home />
+            </div>
+          : (
+            route === 'properties'
+            ? <div>
+               <Properties />
+            </div>
+            : (
+              route === 'tenants'
+              ? <div>
+                  <Home />
+                </div>
+                : (
+                  route === 'deals'
+                  ? <div>
+                      <Deals loadDeal = {this.loadDeal} onRouteChange={this.onRouteChange}/>
+                    </div>
+                    : (
+                        route === 'reports'
+                        ? <div>
+                            <Home />
+                          </div>
+                          : (
+                  		   	  route === 'signin'
+                  		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
+                  		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
+                  		   	  ))))))
 		}
       </div>
     );

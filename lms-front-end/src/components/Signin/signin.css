@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
 /* Rectangle 3: */
-background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
+  background: #EAEAEA;
 }
 
 
@@ -28,7 +28,7 @@ background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
   position: absolute;
   width: 320px;
   left:50%;
-  top:50%;
+  top:40%;
   margin-left: -160px;
   margin-top: -160px;
   border-style: solid;
@@ -42,15 +42,13 @@ background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
   width: 320px;
   float: left;
   background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
-
-  border-radius: 8px;
-transition: all 0.5s;
+  border-radius: 6px;
+  transition: all 0.5s;
 }
 
 .cent_active {
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
 }
-
 
 .cont_tabs_login {
 position: relative;
