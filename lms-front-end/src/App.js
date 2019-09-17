@@ -7,6 +7,7 @@ import Register from './components/Register/register.js';
 import Properties from './components/Properties/properties.js';
 import Deals from './components/Deals/deals.js';
 import DealEdit from './components/Deals/DealEdit/dealedit.js';
+import Tenants from './components/Tenants/tenants.js';
 
 const initialState = {
 	input: '',
@@ -95,7 +96,7 @@ class App extends Component {
             : (
               route === 'tenants'
               ? <div>
-                  <Home />
+                  <Tenants />
                 </div>
                 : (
                   route === 'deals'

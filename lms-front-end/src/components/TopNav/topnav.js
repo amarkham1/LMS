@@ -7,9 +7,22 @@ import homeicon from './home.png';
 import tenanticon from './tenants.png';
 import portfolioicon from './portfolios.png';
 import bell from './bell.png';
-
+import PropTypes from 'prop-types';
 
 class TopNav extends React.Component {
+	static propTypes = {
+		firstName: PropTypes.string,
+		lastName: PropTypes.string,
+		onRouteChange: PropTypes.func,
+		isSignedIn: PropTypes.bool,
+	}
+
+	static defaultProps = {
+		firstName: 'Joe',
+		lastName: 'Blow',
+		isSignedIn: true,
+	}
+
 	constructor(props) {
 	    super(props);
 
