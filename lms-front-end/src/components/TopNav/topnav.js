@@ -1,5 +1,6 @@
 import React from 'react';
 import './topnav.css';
+import PropTypes from 'prop-types';
 import dashicon from './dashboard.png';
 import pipeicon from './pipeline.png';
 import reporticon from './reports.png';
@@ -7,7 +8,6 @@ import homeicon from './home.png';
 import tenanticon from './tenants.png';
 import portfolioicon from './portfolios.png';
 import bell from './bell.png';
-import PropTypes from 'prop-types';
 
 class TopNav extends React.Component {
 	static propTypes = {

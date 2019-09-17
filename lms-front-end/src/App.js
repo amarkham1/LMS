@@ -8,6 +8,7 @@ import Properties from './components/Properties/properties.js';
 import Deals from './components/Deals/deals.js';
 import DealEdit from './components/Deals/DealEdit/dealedit.js';
 import Tenants from './components/Tenants/tenants.js';
+import Portfolios from './components/Portfolios/portfolios.js';
 
 const initialState = {
 	input: '',
@@ -45,10 +46,7 @@ class App extends Component {
   loadDeal = (deal) => {
     this.setState((state) => ({
       dealid: deal
-    }));
-    console.log(this.state.dealid, "hi");
-
-    
+    }));    
   }
 
   onRouteChange = (route) => {
@@ -79,41 +77,29 @@ class App extends Component {
           onRouteChange={this.onRouteChange}
           isSignedIn={isSignedIn}
         />
-      	{ route === 'home'
-      	  ? <div>
-		          <Home />
-		        </div>
-		   : (
-          route === 'portfolios'
-          ? <div>
-              <Home />
-            </div>
-          : (
-            route === 'properties'
-            ? <div>
-               <Properties />
-            </div>
-            : (
-              route === 'tenants'
-              ? <div>
-                  <Tenants />
-                </div>
-                : (
-                  route === 'deals'
-                  ? <div>
-                      <Deals loadDeal = {this.loadDeal} onRouteChange={this.onRouteChange}/>
-                    </div>
-                    : (
-                        route === 'reports'
-                        ? <div>
-                            <Home />
-                          </div>
-                          : (
-                  		   	  route === 'signin'
-                  		   	  ? <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/> 
-                  		   	  : <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
-                  		   	  ))))))
-		}
+        <div>
+        {
+          (() => {
+            if (route === 'home') {
+              return <Home />
+            } else if (route === 'portfolios') {
+              return <Portfolios />
+            } else if (route === 'properties') {
+              return <Properties />
+            } else if (route === 'tenants') {
+              return <Tenants />
+            } else if (route === 'deals') {
+              return <Deals />
+            } else if (route === 'reports') {
+              return <Home />
+            } else if (route === 'signin') {
+              return <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
+            } else {
+              return <Register loadUser ={this.loadUser} onRouteChange={this.onRouteChange} />
+            }
+          })()
+        }
+        </div>
       </div>
     );
   }
