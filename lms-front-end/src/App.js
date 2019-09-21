@@ -6,15 +6,14 @@ import Signin from './components/Signin/signin.js';
 import Register from './components/Register/register.js';
 import Properties from './components/Properties/properties.js';
 import Deals from './components/Deals/deals.js';
-import DealEdit from './components/Deals/DealEdit/dealedit.js';
 import Tenants from './components/Tenants/tenants.js';
 import Portfolios from './components/Portfolios/portfolios.js';
 
 const initialState = {
 	input: '',
     //change to 'signin' and false
-	route: 'signin',
-  isSignedIn: false,
+	route: 'properties',
+  isSignedIn: true,
     //change to 'signin' and false
 	user: {
 		id: '',
@@ -23,8 +22,6 @@ const initialState = {
 		email: '',
 		joined: ''
 	},
-  dealid: '',
-  dealadd: false,
 }
 
 class App extends Component {

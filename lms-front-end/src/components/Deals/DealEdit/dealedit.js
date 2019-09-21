@@ -1,12 +1,14 @@
 import React from 'react';
 import './dealedit.css';
-import Select from 'react-select';
 import moment from 'moment';
 import AddNegotiationModal from '../../Modals/AddNegotiationModal/addnegotiationmodal.js';
-
-
+import PropTypes from 'prop-types';
 
 class DealEdit extends React.Component {
+	static propTypes = {
+		dealSelected: PropTypes.number
+	}
+	
 	constructor(props) {
 		super(props);
 
@@ -25,7 +27,7 @@ class DealEdit extends React.Component {
 	}
 
 	loadDeal() {
-		const fetchURLdeals = `http://localhost:3000/deals/13`; /* ${this.props.dealid} */
+		const fetchURLdeals = `http://localhost:3000/deals/${this.props.dealid}`; /* ${this.props.dealid} */
 		fetch(fetchURLdeals, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
@@ -38,7 +40,7 @@ class DealEdit extends React.Component {
 		  	  	})
 		    })
 
-		const fetchURLdealnegs = `http://localhost:3000/dealneg/13`;
+		const fetchURLdealnegs = `http://localhost:3000/dealneg/${this.props.dealid}`;
 		fetch(fetchURLdealnegs, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
@@ -49,17 +51,11 @@ class DealEdit extends React.Component {
 		  	  		isLoadingNegs: false,
 		  	  		dealnegs: dealnegs,
 		  	  	})
-		  	  	console.log('response', dealnegs);
-		  	  	console.log('state dealnegs', this.state.dealnegs);
 		    })
 	}
 
 	componentDidMount() {
 		this.loadDeal();
-	}
-
-	componentDidUpdate() {
-
 	}
 
 	onTenantChange = (event) => {
@@ -102,12 +98,11 @@ class DealEdit extends React.Component {
 		  .then(deal => {
 		  	if(deal.id) {
 		  		this.props.handleDealNoAdd();
-		  	} else { console.log("uhoh")}
+		  	}
 		  })
 	}
 
 	render() {
-		const { dealid } = this.props;
 		return (
 			<div className="container">
 			  { (!this.state.isLoadingDeal && !this.state.isLoadingNegs) ? ( 
@@ -128,7 +123,7 @@ class DealEdit extends React.Component {
 										    	type="text" 
 										    	className="inputbox" 
 										    	placeholder={this.state.deal[0].tenant} 
-										    	name="property" 
+										    	name="tenant" 
 										    	value={this.state.tenant}
 										    	onChange={this.onTenantChange}
 										    />  

@@ -39,10 +39,6 @@ class Deals extends React.Component {
 		this.fetchDeals();
 	}
 
-	componentDidUpdate() {
-		/* this.fetchDeals(); */
-	}
-
 	handleDealClick(row) {
 		this.setState({
 			dealSelected: row.id,

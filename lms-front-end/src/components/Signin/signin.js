@@ -20,7 +20,7 @@ class Signin extends React.Component {
 	}
 
 	onKeyPress = (event) => {
-		if (event.keyCode == 13 && event.shiftKey == false) {
+		if (event.keyCode === 13 && event.shiftKey === false) {
 			event.preventDefault();
 			this.onSubmitSignIn();
 		}

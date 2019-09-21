@@ -271,6 +271,7 @@ class AddDealModal extends React.Component {
               <input
                 type="cancel"
                 value="Cancel"
+                readOnly
                 className="button cancel-button"
                 onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
               />

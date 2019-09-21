@@ -25,7 +25,7 @@ class DealTable extends React.Component {
 			<div className="dealtable">
 				<table>
 					<thead>
-						<tr class="titlerow">
+						<tr className="titlerow">
 							<th className="big title left">Tenant</th>
 							<th className="mid title left">Property</th>
 							<th className="small title left">Unit</th>

@@ -1,100 +1,110 @@
 import React from 'react';
 import './properties.css';
-import { render } from "react-dom";
-import matchSorter from 'match-sorter';
-import ReactTable from "react-table";
-import "react-table/react-table.css";
-
-
+import PropertyEdit from './PropertyEdit/propertyedit.js';
+import AddPropertyModal from '../Modals/AddPropertyModal/addpropertymodal.js';
+import PropertyTable from './propertytable.js';
 
 class Properties extends React.Component {
 	constructor(props) {
 		super(props);
+		
 		this.state = {
-			data : [{
-				firstName: 'Jim',
-				lastName: 'Beam',
-				age: 21,
-			}]
+			propertiesdata: [],
+			isLoading: true,
+			propertySelected: '', /* set to '' */
+			propertyadd: false,
+			propertyedit: false, /* set to false */
 		}
+		this.handlePropertyAdd = this.handlePropertyAdd.bind(this);
+		this.handlePropertyNoAdd = this.handlePropertyNoAdd.bind(this);
+		this.handlePropertyClick = this.handlePropertyClick.bind(this);
+		this.handlePropertyEdit = this.handlePropertyEdit.bind(this);
 	}
-	render() {
-		const { data } = this.state;
 
+	fetchProperties() {
+		fetch('http://localhost:3000/deals', {
+			method: 'get',
+			headers: {'Content-Type': 'application/json'},
+		})
+		    .then(response => response.json())
+		    .then(deals => {
+		  	    this.setState({
+		  	    	dealsdata: deals,
+		  	    	isLoading: false,
+		  	    })
+		  	})
+	}
+
+	componentDidMount() {
+		this.fetchProperties();
+	}
+
+	handlePropertyClick(row) {
+		this.setState({
+			propertySelected: row.id,
+		})
+	}
+
+	handlePropertyAdd() {
+		this.setState({propertyadd: true});
+	}
+
+	handlePropertyNoAdd() {
+		this.setState({propertyadd: false});
+	}
+
+	handlePropertyEdit() {
+		this.setState({ propertyedit: true })
+	}
+
+	onEditProperty() {
+		fetch('http://localhost:3000/deals/:id', {
+				method: 'get',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					id: this.state.dealSelected.id,
+				})
+		})
+		    .then(response => response.json())
+		    .then(user => {
+		  	  if(user.id) {
+		  	  	this.setState({ signInError: false})
+		  		this.props.loadUser(user)
+		  		this.props.onRouteChange('deals/:id');
+		  	  } else {
+		  	  	this.setState({ signInError: true })
+		  	  	// this.props.onRouteChange('signin');
+		  	  }
+		    })
+	}
+
+	render() {
+	  const { onRouteChange } = this.props;
 		return (
-			<div className="container">
-			    <div className="propertylist">
-			      PROPERTY LIST    
-			      <div>
-			        <ReactTable
-			          data={data}
-			          filterable
-			          defaultFilterMethod={(filter, row) =>
-			            String(row[filter.id]) === filter.value}
-			          columns={[
-			            {
-			              Header: "Name",
-			              columns: [
-			                {
-			                  Header: "First Name",
-			                  accessor: "firstName",
-			                  filterMethod: (filter, row) =>
-			                    row[filter.id].startsWith(filter.value) &&
-			                    row[filter.id].endsWith(filter.value)
-			                },
-			                {
-			                  Header: "Last Name",
-			                  id: "lastName",
-			                  accessor: d => d.lastName,
-			                  filterMethod: (filter, rows) =>
-			                    matchSorter(rows, filter.value, { keys: ["lastName"] }),
-			                  filterAll: true
-			                }
-			              ]
-			            },
-			            {
-			              Header: "Info",
-			              columns: [
-			                {
-			                  Header: "Age",
-			                  accessor: "age"
-			                },
-			                {
-			                  Header: "Over 21",
-			                  accessor: "age",
-			                  id: "over",
-			                  Cell: ({ value }) => (value >= 21 ? "Yes" : "No"),
-			                  filterMethod: (filter, row) => {
-			                    if (filter.value === "all") {
-			                      return true;
-			                    }
-			                    if (filter.value === "true") {
-			                      return row[filter.id] >= 21;
-			                    }
-			                    return row[filter.id] < 21;
-			                  },
-			                  Filter: ({ filter, onChange }) =>
-			                    <select
-			                      onChange={event => onChange(event.target.value)}
-			                      style={{ width: "100%" }}
-			                      value={filter ? filter.value : "all"}
-			                    >
-			                      <option value="all">Show All</option>
-			                      <option value="true">Can Drink</option>
-			                      <option value="false">Can't Drink</option>
-			                    </select>
-			                }
-			              ]
-			            }
-			          ]}
-			          defaultPageSize={10}
-			          className="-striped -highlight"
-			        />
-			        <br />
-			      </div>
-	  		
-			    </div>
-			</div>
+		  <div>
+			  { !this.state.propertyedit ? 
+			  	(
+			  	  <div className="container">
+				  <AddPropertyModal handlePropertyNoAdd={this.handlePropertyNoAdd} show={this.state.propertyadd}/>
+					<div className="dealslist">
+				 	  <div className="deal-buttons">
+						<input className="btn" onClick={this.handlePropertyAdd} type="button" value="ADD PROPERTY" />
+						{ this.state.propertySelected &&
+							<input className="btn" type="button" value="EDIT PROPERTY" onClick={this.handlePropertyEdit}/>
+						}
+					  </div>
+					  { !this.state.isLoading && 
+					  	<PropertyTable propertiesdata={this.state.propertiesdata} handlePropertyClick={this.handlePropertyClick} />
+					  }
+					</div>
+				  </div>
+				) : (
+				  <div className="container">
+				    <PropertyEdit propertyid={this.state.propertySelected} />
+				  </div>
+				)
+			  }
+	 	  </div>
 		);
 	}
 }

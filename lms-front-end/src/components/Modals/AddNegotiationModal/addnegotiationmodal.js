@@ -2,16 +2,19 @@ import React from 'react';
 import './addnegotiationmodal.css';
 import Select from 'react-select';
 import moment from "moment";
+import PropTypes from 'prop-types';
 
 function validateTheSpace(
   propertyname, 
   unit,
   gla, 
+  status,
   ) { 
     return {
       propertyname: (propertyname.length === 0),
       unit: (unit.length === 0),
       gla: (gla.length === 0),
+      status: (status.length === 0),
     };
 }
 
@@ -50,13 +53,21 @@ function validateFinancialTerms(
 }
 
 class AddNegotiationModal extends React.Component {
+  static propTypes = {
+    handleNegNoAdd: PropTypes.func,
+    show: PropTypes.bool,
+    dealid: PropTypes.number,
+    loadDeal: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
+
     this.state = {
       modalcategory: {
-        thespace: false,
+        thespace: true,
         timing: false,
-        financialterms: true,
+        financialterms: false,
       },
       unit: '',
       propertyname: '',
@@ -101,10 +112,10 @@ class AddNegotiationModal extends React.Component {
       propertyLoaded: false,
       loaded: false,
     }
+    this.onChange = this.onChange.bind(this);
   }
 
   async componentDidMount() {
-
     await fetch('http://localhost:3000/adddealmodal/property', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
@@ -124,42 +135,29 @@ class AddNegotiationModal extends React.Component {
       propertyname: event.value.propertyname,
     })
 
-      fetch('http://localhost:3000/adddealmodal/unit', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          property: event.value.propertyname,
-        })
+    fetch('http://localhost:3000/adddealmodal/unit', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        property: event.value.propertyname,
       })
-        .then(response => response.json())
-        .then(units => {
-          units.forEach(element => {
-            let dropDownEle = { label: element["unit"], value: element };
-            this.state.unitDropdown.push(dropDownEle);
-          });  
-          this.setState({propertyLoaded: true})
-        })
-    
+    })
+      .then(response => response.json())
+      .then(units => {
+        units.forEach(element => {
+          let dropDownEle = { label: element["unit"], value: element };
+          this.state.unitDropdown.push(dropDownEle);
+        });  
+        this.setState({propertyLoaded: true})
+      })
+  }
+
+  onChange = name => event => {
+    this.setState({ [name]: event.target.value});
   }
 
   onUnitChange = (event) => {
     this.setState({unit: event.value.unit})
-  }
-
-  onGLAChange = (event) => {
-    this.setState({gla: event.target.value})
-  }
-
-  onStatusChange = (event) => {
-    this.setState({status: event.target.value})
-  }
-  
-  onCDateChange = (event) => {
-    this.setState({cdate: event.target.value})
-  }
-  
-  onTermChange = (event) => {
-    this.setState({term: event.target.value})
   }
   
   onRent1Change = (event) => {
@@ -169,34 +167,6 @@ class AddNegotiationModal extends React.Component {
       rent1start: this.state.cdate,
       rent1end: this.state.expirydate,
     })
-  }
-  
-  onRent1MonthsChange = (event) => {
-    this.setState({rent1months: event.target.value})
-  }
-  
-  onFDateChange = (event) => {
-    this.setState({fdate: event.target.value})
-  }
-  
-  onTIChange = (event) => {
-    this.setState({ti: event.target.value})
-  }
-  
-  onIntCommChange = (event) => {
-    this.setState({intcomm: event.target.value})
-  }
-  
-  onExtCommChange = (event) => {
-    this.setState({extcomm: event.target.value})
-  }
-  
-  onLLWChange = (event) => {
-    this.setState({llw: event.target.value})
-  }
-  
-  onFreeRentChange = (event) => {
-    this.setState({gfrent: event.target.value})
   }
 
   onFreeRentMonthsChange = (event) => {
@@ -225,26 +195,8 @@ class AddNegotiationModal extends React.Component {
       }
   }
 
-  canNextTheSpace() {
-    const errors = validateTheSpace(this.state.propertyname, this.state.unit, this.state.gla);
-    const isDisabled = Object.keys(errors).some(x => errors[x]);
-    return !isDisabled;
-  }
-
-  canNextTiming() {
-    const errors = validateTiming(this.state.cdate, this.state.term, this.state.fdate);
-    const isDisabled = Object.keys(errors).some(x => errors[x]);
-    return !isDisabled;
-  }
-
-  canBeSubmitted() {
-    const errors = validateFinancialTerms(this.state.rent1, this.state.rent1months, this.state.ti, this.state.intcomm, this.state.extcomm, this.state.llw, this.state.gfrent, this.state.gfrentmonths);
-    const isDisabled = Object.keys(errors).some(x => errors[x]);
-    return !isDisabled;
-  }
-
   handleSubmit = (event) => {
-    if (!this.canBeSubmitted()) {
+    if (!this.canNext('financial')) {
       this.setState({
         touched: { ...this.state.touched, 'rent1': true, 'rent1months': true, 'ti': true, 'intcomm': true, 'extcomm': true, 'llw': true, 'gfrent': true, 'gfrentmonths': true}
       })
@@ -290,7 +242,7 @@ class AddNegotiationModal extends React.Component {
 
   handleNext = (event) => {
     if(this.state.modalcategory['thespace']) {
-      if (!this.canNextTheSpace()) {
+      if (!this.canNext('thespace')) {
         this.setState({
           touched: { ...this.state.touched, 'property': true, 'unit': true, 'gla': true}
         })
@@ -302,7 +254,7 @@ class AddNegotiationModal extends React.Component {
         })
       }
     } else if (this.state.modalcategory['timing']) {
-      if (!this.canNextTiming()) {
+      if (!this.canNext('timing')) {
         this.setState({
           touched: { ...this.state.touched, 'fdate': true, 'cdate': true, 'term': true, 'expirydate': true}
         })
@@ -327,6 +279,22 @@ class AddNegotiationModal extends React.Component {
       this.setState({
         modalcategory: { ...this.state.modalcategory, 'financialterms': false, 'timing': true}
       })
+    }
+  }
+
+  canNext(page) {
+    if (page === 'thespace') {
+      const errors = validateTheSpace(this.state.propertyname, this.state.unit, this.state.gla, this.state.status);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      return !isDisabled;    
+    } else if (page === 'timing') {
+      const errors = validateTiming(this.state.cdate, this.state.term, this.state.fdate);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      return !isDisabled; 
+    } else if (page === 'financial') {
+      const errors = validateFinancialTerms(this.state.rent1, this.state.rent1months, this.state.ti, this.state.intcomm, this.state.extcomm, this.state.llw, this.state.gfrent, this.state.gfrentmonths);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      return !isDisabled; 
     }
   }
 
@@ -377,7 +345,8 @@ class AddNegotiationModal extends React.Component {
   }
 
   render() {
-    const errorsTheSpace = validateTheSpace(this.state.propertyname, this.state.unit, this.state.gla);
+ 
+    const errorsTheSpace = validateTheSpace(this.state.propertyname, this.state.unit, this.state.gla, this.state.status);
     const errorsTiming = validateTiming(this.state.cdate, this.state.term, this.state.fdate);
     const errorsFinancialTerms = validateFinancialTerms(this.state.rent1, this.state.rent1months, this.state.ti, this.state.intcomm, this.state.extcomm, this.state.llw, this.state.gfrent, this.state.gfrentmonths);
     
@@ -416,13 +385,13 @@ class AddNegotiationModal extends React.Component {
                   
                   <div className="neg-boxcontainer">
                     <div className="leftbox">
-                      <p className={shouldMarkTheSpaceError('property') ? "input-title-error" : "input-title"}>Property:</p>
+                      <p className={shouldMarkTheSpaceError('propertyname') ? "input-title-error" : "input-title"}>Property:</p>
                       <Select 
                         options={this.state.propertyDropdown}
-                        className="neg-form-input"
+                        className="neg-form-input" 
                         classNamePrefix="neg-form-input"
                         onChange={this.onPropertyChange}
-                        onBlur={this.handleBlur('property')}
+                        onBlur={this.handleBlur('propertyname')}
                       />
 
                     { this.state.propertyLoaded ? ([
@@ -431,7 +400,7 @@ class AddNegotiationModal extends React.Component {
                           options={this.state.unitDropdown}
                           className="neg-form-input"
                           classNamePrefix="neg-form-input"
-                          onChange={this.onUnitChange}
+                          onChange={ this.onUnitChange}
                           onBlur={this.handleBlur('unit')}
                         />
                       ]) : null }
@@ -442,7 +411,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.gla}
                         className="neg-form-input"
-                        onChange={this.onGLAChange}
+                        onChange={ this.onChange('gla')}
                         onBlur={this.handleBlur('gla')}
                       />
                       <p className={shouldMarkTheSpaceError('status') ? "input-title-error" : "input-title"}>Negotiation Round:</p>
@@ -450,7 +419,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.status}
                         className="neg-form-input"
-                        onChange={this.onStatusChange}
+                        onChange={ this.onChange('status')}
                         onBlur={this.handleBlur('status')}
                       />
                     </div>
@@ -465,7 +434,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.cdate}
                         className="neg-form-input"
-                        onChange={this.onCDateChange}
+                        onChange={ this.onChange('cdate')}
                         onBlur={this.handleBlur('cdate')}
                       />
                       <p className={shouldMarkTimingError('fdate') ? "input-title-error" : "input-title"}>Fixturing Start Date: (YYYY-MM-DD)</p>
@@ -473,7 +442,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.fdate}
                         className="neg-form-input"
-                        onChange={this.onFDateChange}
+                        onChange={ this.onChange('fdate')}
                         onBlur={this.handleBlur('fdate')}
                       />
                     </div>
@@ -483,13 +452,14 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.term}
                         className="neg-form-input"
-                        onChange={this.onTermChange}
+                        onChange={ this.onChange('term')}
                         onBlur={this.handleBlur('term')}
                       />
                       <p className="input-title">Expiry Date: (YYYY-MM-DD)</p>
                       <input
                         type="input"
                         value={this.state.expirydateOutput}
+                        readOnly
                         placeholder={this.state.expirydateOutput}
                         className="neg-form-input"
                       />
@@ -521,6 +491,7 @@ class AddNegotiationModal extends React.Component {
                           <input
                             type="input"
                             value={this.state.rent1months}
+                            readOnly
                             placeholder={this.state.rent1months}
                             className="neg-form-input"
                           />
@@ -531,7 +502,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.ti}
                         className="neg-form-input"
-                        onChange={this.onTIChange}
+                        onChange={ this.onChange('ti')}
                         onBlur={this.handleBlur('ti')}
                       />
                       <p className={shouldMarkFinancialTermsError('llw') ? "input-title-error" : "input-title"}>LLW:</p>
@@ -539,7 +510,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.llw}
                         className="neg-form-input"
-                        onChange={this.onLLWChange}
+                        onChange={ this.onChange('llw')}
                         onBlur={this.handleBlur('llw')}
                       />
                     </div>
@@ -549,7 +520,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.extcomm}
                         className="neg-form-input"
-                        onChange={this.onExtCommChange}
+                        onChange={ this.onChange('extcomm')}
                         onBlur={this.handleBlur('extcomm')}
                       />
                       <p className={shouldMarkFinancialTermsError('intcomm') ? "input-title-error" : "input-title"}>Internal Commission:</p>
@@ -557,7 +528,7 @@ class AddNegotiationModal extends React.Component {
                         type="input"
                         value={this.state.intcomm}
                         className="neg-form-input"
-                        onChange={this.onIntCommChange}
+                        onChange={ this.onChange('intcomm')}
                         onBlur={this.handleBlur('intcomm')}
                       />
                       <p className={shouldMarkFinancialTermsError('gfrent') ? "input-title-error" : "input-title"}>Free Rent:</p>
@@ -569,7 +540,7 @@ class AddNegotiationModal extends React.Component {
                           <input
                             type="input"
                             className="neg-form-input-small"
-                            onChange={this.onFreeRentChange}
+                            onChange={ this.onChange('gfrent')}
                             onBlur={this.handleBlur('gfrent')}
                           />
                         </div>
@@ -580,7 +551,7 @@ class AddNegotiationModal extends React.Component {
                           <input
                             type="input"
                             className="neg-form-input-small"
-                            onChange={this.onFreeRentMonthsChange}
+                            onChange={ this.onFreeRentMonthsChange}
                             onBlur={this.handleBlur('gfrentmonths')}
                           />
                         </div>
@@ -608,7 +579,6 @@ class AddNegotiationModal extends React.Component {
                       { ((this.state.modalcategory['thespace'] && isTheSpaceDisabled) || (this.state.modalcategory['timing'] && isTimingDisabled)) && (
                           <input 
                             type="next"
-                            value="Next" 
                             className="button add-button-error float-right"
                             onClick={ (event) => this.handleNext(event)}
                           />
@@ -644,6 +614,7 @@ class AddNegotiationModal extends React.Component {
                       <input
                         type="cancel"
                         value="Cancel"
+                        readOnly
                         className="button cancel-button float-right"
                         onClick={ (event) => { this.props.handleNegNoAdd(); this.stateClear(); }}
                       />
