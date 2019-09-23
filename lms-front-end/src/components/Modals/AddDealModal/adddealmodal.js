@@ -37,6 +37,15 @@ class AddDealModal extends React.Component {
       propertyLoaded: false,
       loaded: false,
     }
+
+    this.onTenantChange = this.onTenantChange.bind(this);
+    this.onPropertyChange = this.onPropertyChange.bind(this);
+    this.onUnitChange = this.onUnitChange.bind(this);
+    this.onLLBrokerChange = this.onLLBrokerChange.bind(this);
+    this.onTTBrokerChange = this.onTTBrokerChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.canBeSubmitted = this.canBeSubmitted.bind(this);
+    this.stateClear = this.stateClear.bind(this);
   }
 
   async componentDidMount() {
@@ -95,7 +104,6 @@ class AddDealModal extends React.Component {
 
   onTenantChange = (event) => {
     this.setState({tenant: event.value.tenantname})
-    console.log(this.state.tenant)
   }
 
   onPropertyChange = (event) => {

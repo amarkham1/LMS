@@ -9,7 +9,7 @@ class Properties extends React.Component {
 		super(props);
 		
 		this.state = {
-			propertiesdata: [],
+			propertydata: [],
 			isLoading: true,
 			propertySelected: '', /* set to '' */
 			propertyadd: false,
@@ -22,16 +22,17 @@ class Properties extends React.Component {
 	}
 
 	fetchProperties() {
-		fetch('http://localhost:3000/deals', {
+		fetch('http://localhost:3000/property', {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		})
 		    .then(response => response.json())
-		    .then(deals => {
+		    .then(property => {
 		  	    this.setState({
-		  	    	dealsdata: deals,
+		  	    	propertydata: property,
 		  	    	isLoading: false,
 		  	    })
+		  	    console.log(this.state.propertydata);
 		  	})
 	}
 
@@ -43,6 +44,7 @@ class Properties extends React.Component {
 		this.setState({
 			propertySelected: row.id,
 		})
+		console.log('hi ', this.state.propertySelected);
 	}
 
 	handlePropertyAdd() {
@@ -58,11 +60,11 @@ class Properties extends React.Component {
 	}
 
 	onEditProperty() {
-		fetch('http://localhost:3000/deals/:id', {
+		fetch('http://localhost:3000/property/:id', {
 				method: 'get',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-					id: this.state.dealSelected.id,
+					id: this.state.propertySelected.id,
 				})
 		})
 		    .then(response => response.json())
@@ -70,7 +72,7 @@ class Properties extends React.Component {
 		  	  if(user.id) {
 		  	  	this.setState({ signInError: false})
 		  		this.props.loadUser(user)
-		  		this.props.onRouteChange('deals/:id');
+		  		this.props.onRouteChange('property/:id');
 		  	  } else {
 		  	  	this.setState({ signInError: true })
 		  	  	// this.props.onRouteChange('signin');
@@ -94,7 +96,7 @@ class Properties extends React.Component {
 						}
 					  </div>
 					  { !this.state.isLoading && 
-					  	<PropertyTable propertiesdata={this.state.propertiesdata} handlePropertyClick={this.handlePropertyClick} />
+					  	<PropertyTable propertydata={this.state.propertydata} handlePropertyClick={this.handlePropertyClick} />
 					  }
 					</div>
 				  </div>

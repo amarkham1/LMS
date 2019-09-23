@@ -6,14 +6,14 @@ class PropertyTable extends React.Component {
 		super(props);
 		
 		this.state = {
-			propertiesdata: this.props.propertiesdata,
+			propertydata: this.props.propertydata,
 			propertySelected: '',
 		}
-
 		this.handlePropertyClick = this.handlePropertyClick.bind(this);
 	}
 
 	handlePropertyClick(row) {
+		console.log('row id', row.id);
 		this.setState({
 			propertySelected: row.id,
 		})
@@ -26,64 +26,64 @@ class PropertyTable extends React.Component {
 				<table>
 					<thead>
 						<tr className="titlerow">
-							<th className="big title left">Tenant</th>
-							<th className="mid title left">Property</th>
-							<th className="small title left">Unit</th>
-							<th className="small title left">GLA (SF)</th>
-							<th className="mid title left">Status</th>
-							<th className="mid title left">Landlord Broker</th>
-							<th className="mid title left">Tenant Broker</th>
-							<th className="mid title left">Commencement Date</th>
-							<th className="small title left">Adj. NER</th>
-							<th className="mid title left">Total Deal Costs</th>
+							<th className="big title left">Property</th>
+							<th className="big title left">Address</th>
+							<th className="mid title left">City</th>
+							<th className="mid title left">Province</th>
+							<th className="mid title left">Portfolio</th>
+							<th className="mid title left">GLA (SF)</th>
+							<th className="mid title left">Storeys</th>
+							<th className="mid title left">Site Area (SF)</th>
+							<th className="small title left">Year Built</th>
+							<th className="small title left">Year Acquired</th>
 						</tr>
 					</thead>
 					<tbody>
 						{
-							this.state.propertiesdata.map(row => (
+							this.state.propertydata.map(row => (
 								<tr
 								  key={row.id} 
 								  className={ this.state.propertySelected === row.id ? "tr active" : "tr" }>
 									<td 
 										className="mid left rows toprow"
 										onClick={() => this.handlePropertyClick(row)}
-									>{row.tenant}</td>
+									>{row.propertyname}</td>
 									<td 
 										className="mid left rows"
 										onClick={() => this.handlePropertyClick(row)}
-									>{row.property}</td>
+									>{row.address}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.city}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.province}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.portfolio}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.rentablearea}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.storeys}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.siteareasf}</td>
+									<td 
+										className="mid left rows"
+										onClick={() => this.handlePropertyClick(row)}
+									>{row.yearbuilt}</td>
 									<td 
 										className="small left rows"
 										onClick={() => this.handlePropertyClick(row)}
-									>{row.unit}</td>
-									<td 
-										className="small left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.gla}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.status}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.llbroker}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.ttbroker}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.cdate}</td>
-									<td 
-										className="small left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.adjner}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.dealcosts}</td>
+									>{row.yearacquired}</td>
 								</tr>
 							))
 						}  

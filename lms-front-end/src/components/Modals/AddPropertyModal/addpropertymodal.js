@@ -3,13 +3,13 @@ import './addpropertymodal.css';
 import Select from 'react-select';
 import {css} from 'emotion';
 
-function validate(tenant, unit, property, llbroker, ttbroker) { 
+function validate(propertyname, address, city, rentablearea, storeys) { 
   return {
-    tenant: (tenant.length === 0),
-    unit: (unit.length === 0),
-    property: (property.length === 0),
-    llbroker: (llbroker.length === 0),
-    ttbroker: (ttbroker.length === 0),
+    propertyname: (propertyname.length === 0),
+    address: (address.length === 0),
+    city: (city.length === 0),
+    rentablearea: (rentablearea.length === 0),
+    storeys: (storeys.length === 0),
   };
 }
 
@@ -17,120 +17,34 @@ class AddPropertyModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tenant: '',
-      unit: '',
-      property: '',
-      llbroker: '',
-      ttbroker: '',
+      propertyname: '',
+      address: '',
+      city: '',
+      rentablearea: '',
+      storeys: '',
+      siteareasf: '',
+      yearbuilt: '',
+      yearacquired: '',
       touched: {
-        tenant: false,
-        unit: false,
-        property: false,
-        llbroker: false,
-        ttbroker: false
+        propertyname: false,
+        address: false,
+        city: false,
+        rentablearea: false,
+        storeys: false,
+        siteareasf: false,
+        yearbuilt: false,
+        yearacquired: false,
       },
-      tenantDropdown: [],
-      propertyDropdown: [],
-      unitDropdown: [],
-      llbrokerDropdown: [],
-      ttbrokerDropdown: [],
-      propertyLoaded: false,
-      loaded: false,
     }
+
+    this.onChange = this.onChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.stateClear = this.stateClear.bind(this);
   }
 
-  async componentDidMount() {
-
-    await fetch('http://localhost:3000/adddealmodal/tenant', {
-      method: 'get',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(response => response.json())
-      .then(tenants => {
-        tenants.forEach(element => {
-          let dropDownEle = { label: element["tenantname"], value: element };
-          this.state.tenantDropdown.push(dropDownEle);
-        });      
-      })
-
-    await fetch('http://localhost:3000/adddealmodal/property', {
-      method: 'get',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(response => response.json())
-      .then(properties => {
-        properties.forEach(element => {
-          let dropDownEle = { label: element["propertyname"], value: element };
-          this.state.propertyDropdown.push(dropDownEle);
-        });      
-      })
-
-    await fetch('http://localhost:3000/adddealmodal/llbroker', {
-      method: 'get',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(response => response.json())
-      .then(llbrokers => {
-        llbrokers.forEach(element => {
-          let dropDownEle = { label: element["brokername"], value: element };
-          this.state.llbrokerDropdown.push(dropDownEle);
-        });      
-      })
-
-    await fetch('http://localhost:3000/adddealmodal/ttbroker', {
-      method: 'get',
-      headers: {'Content-Type': 'application/json'},
-    })
-      .then(response => response.json())
-      .then(ttbrokers => {
-        ttbrokers.forEach(element => {
-          let dropDownEle = { label: element["brokername"], value: element };
-          this.state.ttbrokerDropdown.push(dropDownEle);
-        });      
-      })
-
-    this.setState({loaded: true})
-
-  }
-
-  onTenantChange = (event) => {
-    this.setState({tenant: event.value.tenantname})
-    console.log(this.state.tenant)
-  }
-
-  onPropertyChange = (event) => {
-    this.setState({
-      property: event.value.propertyname,
-    })
-
-      fetch('http://localhost:3000/adddealmodal/unit', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          property: event.value.propertyname,
-        })
-      })
-        .then(response => response.json())
-        .then(units => {
-          units.forEach(element => {
-            let dropDownEle = { label: element["unit"], value: element };
-            this.state.unitDropdown.push(dropDownEle);
-          });  
-          this.setState({propertyLoaded: true})
-        })
-    
-  }
-
-  onUnitChange = (event) => {
-    this.setState({unit: event.value.unit})
-  }
-
-  onLLBrokerChange = (event) => {
-    this.setState({llbroker: event.value.brokername})
-  }
-
-  onTTBrokerChange = (event) => {
-    this.setState({ttbroker: event.value.brokername})
+  onChange = name => event => {
+    this.setState({ [name]: event.target.value});
   }
 
   handleBlur = (field) => (event) => {
@@ -140,36 +54,38 @@ class AddPropertyModal extends React.Component {
   }
  
   canBeSubmitted() {
-    const errors = validate(this.state.tenant, this.state.unit, this.state.property, this.state.llbroker, this.state.ttbroker);
+    const errors = validate(this.state.propertyname, this.state.address, this.state.city, this.state.rentablearea, this.state.storeys);
     const isDisabled = Object.keys(errors).some(x => errors[x]);
     return !isDisabled;
   }
 
-
   handleSubmit = (event) => {
     if (!this.canBeSubmitted()) {
       this.setState({
-        touched: { ...this.state.touched, 'tenant': true, 'property': true, 'unit': true, 'llbroker': true, 'ttbroker': true}
+        touched: { ...this.state.touched, 'propertyname': true, 'city': true, 'address': true, 'rentablearea': true, 'storeys': true}
       })
       event.preventDefault();
       return;
 
     }
 
-    fetch('http://localhost:3000/dealsedit', {
+    fetch('http://localhost:3000/propertyedit', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        tenant: this.state.tenant,
-        property: this.state.property,
-        unit: this.state.unit,
-        llbroker: this.state.llbroker,
-        ttbroker: this.state.ttbroker,
+        propertyname: this.state.propertyname,
+        address: this.state.address,
+        city: this.state.city,
+        rentablearea: this.state.rentablearea,
+        storeys: this.state.storeys,
+        siteareasf: this.state.siteareasf,
+        yearbuilt: this.state.yearbuilt,
+        yearacquired: this.state.yearacquired,
       })
     })
       .then(response => response.json())
-      .then(deal => {
-        if(deal) {
+      .then(property => {
+        if(property) {
           this.props.handlePropertyNoAdd();
         } else { console.log("uhoh")}
       })
@@ -179,76 +95,103 @@ class AddPropertyModal extends React.Component {
   stateClear = () => {
     this.setState({
       touched: false,
-      tenant: '',
-      unit: '',
-      property: '',
-      llbroker: '',
-      ttbroker: '',
+      propertyname: '',
+      address: '',
+      city: '',
+      rentablearea: '',
+      storeys: '',
+      siteareasf: '',
+      yearbuilt: '',
+      yearacquired: '',
     });
   }
 
   render() {
-    const errors = validate(this.state.tenant, this.state.unit, this.state.property, this.state.llbroker, this.state.ttbroker);
+    const errors = validate(this.state.propertyname, this.state.address, this.state.city, this.state.rentablearea, this.state.storeys);
     const isDisabled = Object.keys(errors).some(x => errors[x]);
     const shouldMarkError = (field) => {
       return errors[field] && this.state.touched[field];
     }
 
-    const showHideClassName = this.props.show ? 'deal-modal deal-display-block' : 'deal-modal deal-display-none';
+    const showHideClassName = this.props.show ? 'property-modal property-display-block' : 'property-modal property-display-none';
     return (
       <div className={showHideClassName}>
         <React.Fragment>
-        <section className='deal-modal-main'>
-         { this.state.loaded && (
+        <section className='property-modal-main'>
            <React.Fragment>
-            <div className="deal-modal-title">Add New Deal</div>,
-            <div className="deal-modal-body">
+            <div className="property-modal-title">Add New Property</div>,
+            <div className="property-modal-body">
 
-              <p className={shouldMarkError('tenant') ? "deal-input-title-error" : "deal-input-title"}>Tenant Name:</p>
-              <Select 
-                options={this.state.tenantDropdown}
-                className="deal-form-input"
-                classNamePrefix="deal-form-input"
-                onChange={this.onTenantChange.bind(this)}
-                onBlur={this.handleBlur('tenant')}
+              <p className={shouldMarkError('propertyname') ? "property-input-title-error" : "property-input-title"}>Property Name:</p>
+              <input
+                type = "input"
+                className = "property-form-input"
+                value = { this.state.propertyname }
+                onChange = { this.onChange('propertyname') }
+                onBlur = { this.handleBlur('propertyname') }
               />
 
-              <p className={shouldMarkError('property') ? "deal-input-title-error" : "deal-input-title"}>Property:</p>
-              <Select 
-                options={this.state.propertyDropdown}
-                className="deal-form-input"
-                classNamePrefix="deal-form-input"
-                onChange={this.onPropertyChange.bind(this)}
-                onBlur={this.handleBlur('property')}
+              <p className={shouldMarkError('address') ? "property-input-title-error" : "property-input-title"}>Address:</p>
+              <input
+                type = "input"
+                className= "property-form-input"
+                value = { this.state.address }
+                onChange = { this.onChange('address') }
+                onBlur = { this.handleBlur('address') }
               />
 
-              { this.state.propertyLoaded ? ([
-                  <p className={shouldMarkError('unit') ? "deal-input-title-error" : "deal-input-title"}>Unit:</p>,
-                  <Select 
-                    options={this.state.unitDropdown}
-                    className="deal-form-input"
-                    classNamePrefix="deal-form-input"
-                    onChange={this.onUnitChange.bind(this)}
-                    onBlur={this.handleBlur('unit')}
-                  />
-                ]) : null }
-
-              <p className={shouldMarkError('llbroker') ? "deal-input-title-error" : "deal-input-title"}>Landlord Broker:</p>
-              <Select 
-                options={this.state.llbrokerDropdown}
-                className="deal-form-input"
-                classNamePrefix="deal-form-input"
-                onChange={this.onLLBrokerChange.bind(this)}
-                onBlur={this.handleBlur('llbroker')}
+              <p className={shouldMarkError('city') ? "property-input-title-error" : "property-input-title"}>City:</p>
+              <input
+                type = "input"
+                className= "property-form-input"
+                value = { this.state.city }
+                onChange = { this.onChange('city') }
+                onBlur = { this.handleBlur('city') }
               />
 
-              <p className={shouldMarkError('ttbroker') ? "deal-input-title-error" : "deal-input-title"}>Tenant Broker:</p>
-              <Select 
-                options={this.state.ttbrokerDropdown}
-                className="deal-form-input"
-                classNamePrefix="deal-form-input"
-                onChange={this.onTTBrokerChange.bind(this)}
-                onBlur={this.handleBlur('ttbroker')}
+              <p className={shouldMarkError('rentablearea') ? "property-input-title-error" : "property-input-title"}>Rentable Area:</p>
+              <input
+                type = "input"
+                className= "property-form-input"
+                value = { this.state.rentablearea }
+                onChange = { this.onChange('rentablearea') }
+                onBlur = { this.handleBlur('rentablearea') }
+              />
+
+              <p className={shouldMarkError('storeys') ? "property-input-title-error" : "property-input-title"}>Storeys:</p>
+              <input
+                type = "input"
+                className= "property-form-input"
+                value = { this.state.storeys }
+                onChange = { this.onChange('storeys') }
+                onBlur = { this.handleBlur('storeys') }
+              />
+
+              <p className={shouldMarkError('siteareasf') ? "property-input-title-error" : "property-input-title"}>Site Area SF:</p>
+              <input
+                type = "input"
+                className= "property-form-input"
+                value = { this.state.siteareasf }
+                onChange = { this.onChange('storeys') }
+                onBlur = { this.handleBlur('storeys') }
+              />
+
+              <p className={shouldMarkError('yearbuilt') ? "property-input-title-error" : "property-input-title"}>Year Built:</p>
+              <input
+                type = "input"
+                className = "property-form-input"
+                value = { this.state.yearbuilt }
+                onChange = { this.onChange('yearbuilt') }
+                onBlur = { this.handleBlur('yearbuilt') }
+              />
+
+              <p className={shouldMarkError('yearacquired') ? "property-input-title-error" : "property-input-title"}>Year Acquired:</p>
+              <input
+                type = "input"
+                className = "property-form-input"
+                value = { this.state.yearacquired }
+                onChange = { this.onChange('yearacquired') }
+                onBlur = { this.handleBlur('yearacquired') }
               />
 
               <div className="line"></div>
@@ -271,9 +214,8 @@ class AddPropertyModal extends React.Component {
               <input
                 type="cancel"
                 value="Cancel"
-                readOnly
                 className="button cancel-button"
-                onClick={ (event) => { this.props.handleDealNoAdd(); this.stateClear(); }}
+                onClick={ (event) => { this.stateClear(); this.props.handlePropertyNoAdd(); }}
               />
 
               </div>

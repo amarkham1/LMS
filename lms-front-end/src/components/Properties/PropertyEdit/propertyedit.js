@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class PropertyEdit extends React.Component {
 	static propTypes = {
-		dealSelected: PropTypes.number
+		propertySelected: PropTypes.number
 	}
 	
 	constructor(props) {

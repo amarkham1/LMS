@@ -325,21 +325,7 @@ class AddNegotiationModal extends React.Component {
       gfrentstart: '',
       gfrentend: '',
 
-      touched: {
-        unit: false,
-        propertyname: false,
-        gla: false,
-        status: false,
-        cdate: false,
-        term: false,
-        fdate: false,
-        rent1: false,
-        rent1months: false,
-        ti: false,
-        intcomm: false,
-        extcomm: false,
-        llw: false,
-      },
+      touched: false,
       propertyLoaded: false,
     })
   }
