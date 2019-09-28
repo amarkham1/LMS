@@ -8,12 +8,13 @@ import Properties from './components/Properties/properties.js';
 import Deals from './components/Deals/deals.js';
 import Tenants from './components/Tenants/tenants.js';
 import Portfolios from './components/Portfolios/portfolios.js';
+import Reports from './components/Reports/reports.js';
 
 const initialState = {
 	input: '',
     //change to 'signin' and false
-	route: 'properties',
-  isSignedIn: true,
+	route: 'signin',
+  isSignedIn: false,
     //change to 'signin' and false
 	user: {
 		id: '',
@@ -65,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-  	const { isSignedIn, route, dealid, dealadd, user } = this.state;
+  	const { isSignedIn, route, user } = this.state;
     return (
       <div className="App body">
         <TopNav 
@@ -88,7 +89,7 @@ class App extends Component {
             } else if (route === 'deals') {
               return <Deals />
             } else if (route === 'reports') {
-              return <Home />
+              return <Reports />
             } else if (route === 'signin') {
               return <Signin loadUser ={this.loadUser} onRouteChange={this.onRouteChange}/>
             } else {

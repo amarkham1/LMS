@@ -1,6 +1,5 @@
 import React from 'react';
 import './properties.css';
-import PropertyEdit from './PropertyEdit/propertyedit.js';
 import AddPropertyModal from '../Modals/AddPropertyModal/addpropertymodal.js';
 import PropertyTable from './propertytable.js';
 
@@ -32,7 +31,6 @@ class Properties extends React.Component {
 		  	    	propertydata: property,
 		  	    	isLoading: false,
 		  	    })
-		  	    console.log(this.state.propertydata);
 		  	})
 	}
 
@@ -44,7 +42,6 @@ class Properties extends React.Component {
 		this.setState({
 			propertySelected: row.id,
 		})
-		console.log('hi ', this.state.propertySelected);
 	}
 
 	handlePropertyAdd() {
@@ -81,31 +78,19 @@ class Properties extends React.Component {
 	}
 
 	render() {
-	  const { onRouteChange } = this.props;
 		return (
 		  <div>
-			  { !this.state.propertyedit ? 
-			  	(
 			  	  <div className="container">
 				  <AddPropertyModal handlePropertyNoAdd={this.handlePropertyNoAdd} show={this.state.propertyadd}/>
 					<div className="dealslist">
 				 	  <div className="deal-buttons">
 						<input className="btn" onClick={this.handlePropertyAdd} type="button" value="ADD PROPERTY" />
-						{ this.state.propertySelected &&
-							<input className="btn" type="button" value="EDIT PROPERTY" onClick={this.handlePropertyEdit}/>
-						}
 					  </div>
 					  { !this.state.isLoading && 
 					  	<PropertyTable propertydata={this.state.propertydata} handlePropertyClick={this.handlePropertyClick} />
 					  }
 					</div>
 				  </div>
-				) : (
-				  <div className="container">
-				    <PropertyEdit propertyid={this.state.propertySelected} />
-				  </div>
-				)
-			  }
 	 	  </div>
 		);
 	}

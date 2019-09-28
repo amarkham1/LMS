@@ -380,8 +380,9 @@ class AddNegotiationModal extends React.Component {
                         onBlur={this.handleBlur('propertyname')}
                       />
 
-                    { this.state.propertyLoaded ? ([
-                        <p className={shouldMarkTheSpaceError('unit') ? "input-title-error" : "input-title"}>Unit:</p>,
+                    { this.state.propertyLoaded ? (
+                      <React.Fragment>
+                        <p className={shouldMarkTheSpaceError('unit') ? "input-title-error" : "input-title"}>Unit:</p>
                         <Select 
                           options={this.state.unitDropdown}
                           className="neg-form-input"
@@ -389,13 +390,14 @@ class AddNegotiationModal extends React.Component {
                           onChange={ this.onUnitChange}
                           onBlur={this.handleBlur('unit')}
                         />
-                      ]) : null }
+                      </React.Fragment>
+                      ) : null }
                     </div>
                     <div className="rightbox">
                       <p className={shouldMarkTheSpaceError('gla') ? "input-title-error" : "input-title"}>GLA:</p>
                       <input 
                         type="input"
-                        value={this.state.gla}
+                        value={this.state.gla.toLocaleString('en')}
                         className="neg-form-input"
                         onChange={ this.onChange('gla')}
                         onBlur={this.handleBlur('gla')}
@@ -557,6 +559,7 @@ class AddNegotiationModal extends React.Component {
                           value="Back" 
                           className="button cancel-button float-left"
                           onClick={ (event) => this.handleBack(event)}
+                          readOnly
                         />
                       )}
                     </div>
@@ -585,6 +588,7 @@ class AddNegotiationModal extends React.Component {
                             value="Next" 
                             className="button add-button float-right"
                             onClick={ (event) => this.handleNext(event)}
+                            readOnly
                           />
                       )}
 

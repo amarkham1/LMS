@@ -104,19 +104,19 @@ class DealEdit extends React.Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="dealedit-container">
 			  { (!this.state.isLoadingDeal && !this.state.isLoadingNegs) ? ( 
 				  <React.Fragment>
 				  <AddNegotiationModal handleNegNoAdd={this.handleNegNoAdd} show={this.state.negadd} dealid={this.state.dealid} loadDeal={this.loadDeal.bind(this)}/>
-				  <div className="left-col">
-				    <div className="deal-summary">
-				      <div className="innerbox split float-left">
-				        <p className="boxtitle">DEAL SUMMARY</p>
-						  <div className="table">
+				  <div className="dealedit-left-col">
+				    <div className="dealedit-summary">
+				      <div className="de-innerbox de-split de-float-left">
+				        <p className="dealedit-boxtitle">DEAL SUMMARY</p>
+						  <div className="dealedit-table">
 							<table>
 								<tbody>
 									<tr>
-										<td className="float-left margin-right bold">Tenant Name: </td>
+										<td className="de-float-left de-margin-right bold">Tenant Name: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (      
 											<input 
@@ -132,7 +132,7 @@ class DealEdit extends React.Component {
 										</td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Property: </td>
+										<td className="de-float-left de-margin-right bold">Property: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (      
 											<input 
@@ -148,7 +148,7 @@ class DealEdit extends React.Component {
 									      </td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Unit: </td>
+										<td className="de-float-left de-margin-right bold">Unit: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (      
 											<input 
@@ -164,7 +164,7 @@ class DealEdit extends React.Component {
 									      </td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Landlord Broker: </td>
+										<td className="de-float-left de-margin-right bold">Landlord Broker: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (      
 											<input 
@@ -180,7 +180,7 @@ class DealEdit extends React.Component {
 									      </td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Tenant Broker: </td>
+										<td className="de-float-left de-margin-right bold">Tenant Broker: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (
 											<input 
@@ -196,7 +196,7 @@ class DealEdit extends React.Component {
 									      </td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Date Added: </td>
+										<td className="de-float-left de-margin-right bold">Date Added: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (		      
 											<input 
@@ -211,7 +211,7 @@ class DealEdit extends React.Component {
 									    </td>
 									</tr>
 									<tr>
-										<td className="float-left margin-right bold">Deal Type: </td>
+										<td className="de-float-left de-margin-right bold">Deal Type: </td>
 										<td className="text-left">
 										  { this.state.dealSummaryEdit ? (			      
 											<input 
@@ -229,88 +229,75 @@ class DealEdit extends React.Component {
 								</tbody>
 							</table>
 						</div>
-				      <p><input
-				    	type="button"
-				    	className="plugbutton"
-				    	placeholder="Add Deal"
-				    	name="add"
-				    	onClick= {this.handleSubmit}
-				      /></p>
-				      <p><input
-				    	type="button"
-				    	className="plugbutton"
-				    	placeholder="Cancel"
-				    	name="cancel"
-				    	onClick= {this.props.handleDealNoAdd}
-				      /></p>
+				      <p></p>
 				     </div>
-				     <div className="innerbox split">
-				       <p className="dropdown">LATEST TERMS DROPDOWN</p>
-						<div className="table">
+				     <div className="de-innerbox de-split">
+				       <p className="de-dropdown">LATEST TERMS DROPDOWN</p>
+						<div className="dealedit-table">
 						  <table>
 							<tbody>
 								<tr>
-									<td className="float-left margin-right bold">GLA (SF): </td>
+									<td className="de-float-left de-margin-right bold">GLA (SF): </td>
 									<td className="text-left"> 			      
 										{ this.state.deal[0].tenant }
 									</td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Commencement Date: </td>
+									<td className="de-float-left de-margin-right bold">Commencement Date: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Base Rent: </td>
+									<td className="de-float-left de-margin-right bold">Base Rent: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Tenant Inducement: </td>
+									<td className="de-float-left de-margin-right bold">Tenant Inducement: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Internal Commission: </td>
+									<td className="de-float-left de-margin-right bold">Internal Commission: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">External Commission: </td>
+									<td className="de-float-left de-margin-right bold">External Commission: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Landlord's Work: </td>
+									<td className="de-float-left de-margin-right bold">Landlord's Work: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Free Rent: </td>
+									<td className="de-float-left de-margin-right bold">Free Rent: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Market NER: </td>
+									<td className="de-float-left de-margin-right bold">Market NER: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Adjusted NER: </td>
+									<td className="de-float-left de-margin-right bold">Adjusted NER: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
 								</tr>
 								<tr>
-									<td className="float-left margin-right bold">Total Deal Costs: </td>
+									<td className="de-float-left de-margin-right bold">Total Deal Costs: </td>
 									<td className="text-left"> 				      
 										{ this.state.deal[0].tenant }
 								    </td>
@@ -322,44 +309,32 @@ class DealEdit extends React.Component {
 				    </div>
 				    
 				  </div>
-				  <div className="right-col">
-				    <div className="files">
-				        <p className="boxtitle">FILES</p> 
-				    <p>any-wideLorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique faucibus diam, sit amet fermentum risus vehicula id. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean pellentesque, nulla vitae pharetra mollis, turpis odio hendrerit sapien, quis scelerisque ligula eros vel quam. Maecenas massa tortor, placerat vel malesuada vitae, finibus at nulla. Quisque cursus dui orci, eu ullamcorper felis lacinia eu. Sed pellentesque cursus nunc eget molestie. Vivamus eleifend scelerisque fermentum. Donec non mollis massa.
-
-		Suspendisse ultrices nec 
-					</p>
-				    </div>
-				  </div>
-				  <div className="bottom-row">
+				  <div className="de-bottom-row">
 				    <div className="negotiation-detail">
-				        <div className="innerbox full">
-					      <p className="boxtitle">NEGOTIATION DETAILS</p> 
+				        <div className="de-innerbox de-full">
+					      <p className="dealedit-boxtitle">NEGOTIATION DETAILS</p> 
 					        <div className="buttons">
 					            <input className="btn" onClick={this.handleNegAdd} type="button" value="ADD" />
-					            <input className="btn" onClick={this.handleNegotiationCopy} type="button" value="COPY" />
-					            <input className="btn" onClick={this.handleNegotiationEdit} type="button" value="EDIT" />
-					            <input className="btn" onClick={this.handleNegotiationActive} type="button" value="MARK AS ACTIVE" />
 					        </div>
 					        <div className="negotiationtable">
 						        <table>
 									<thead>
-										<tr className="titlerow">
-											<th className="mid title left">Property</th>
-											<th className="small title left">Unit(s)</th>
-											<th className="small title left">GLA (SF)</th>
-											<th className="mid title left">Status</th>
-											<th className="mid title left">Date Added</th>
-											<th className="mid title left">Fixturing Date</th>
-											<th className="mid title left">Commencement Date</th>
-											<th className="mid title left">Rent</th>
-											<th className="mid title left">TI</th>
-											<th className="mid title left">Int. Commission</th>
-											<th className="mid title left">Ext. Commission</th>
-											<th className="mid title left">LLW</th>
-											<th className="small title left">Market NER</th>
-											<th className="small title left">Adj. NER</th>
-											<th className="mid title left">Total Deal Costs</th>
+										<tr className="de-titlerow">
+											<th className="de-mid title de-left">Property</th>
+											<th className="de-small title de-left">Unit(s)</th>
+											<th className="de-small title de-left">GLA (SF)</th>
+											<th className="de-mid title de-left">Status</th>
+											<th className="de-mid title de-left">Date Added</th>
+											<th className="de-mid title de-left">Fixturing Date</th>
+											<th className="de-mid title de-left">Commencement Date</th>
+											<th className="de-mid title de-left">Rent</th>
+											<th className="de-mid title de-left">TI</th>
+											<th className="de-mid title de-left">Int. Commission</th>
+											<th className="de-mid title de-left">Ext. Commission</th>
+											<th className="de-mid title de-left">LLW</th>
+											<th className="de-small title de-left">Market NER</th>
+											<th className="de-small title de-left">Adj. NER</th>
+											<th className="de-mid title de-left">Total Deal Costs</th>
 										</tr>
 									</thead>
 									<tbody> 
@@ -369,65 +344,65 @@ class DealEdit extends React.Component {
 												  key={row.id} 
 												  className={ this.state.dealNegSelected === row.id ? "tr active" : "tr" }>
 													<td 
-														className="mid left rows toprow"
+														className="de-mid de-left de-rows de-toprow"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.propertyname}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.unit}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
-													>{row.gla}</td>
+													>{row.gla.toLocaleString('en')}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.status}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{ moment(row.currdate, "YYYY-MM-DD").format('MMM D, YYYY') }</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{moment(row.fdate, "YYYY-MM-DD").format('MMM D, YYYY')}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{moment(row.cdate, "YYYY-MM-DD").format('MMM D, YYYY')}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.rent1}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.ti}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.intcomm}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.extcomm}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.llw}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.llw}</td>
 													<td 
-														className="small left rows"
+														className="de-small de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
 													>{row.llw}</td>
 													<td 
-														className="mid left rows"
+														className="de-mid de-left de-rows"
 														onClick={() => this.handleDealNegClick(row)}
-													>{row.dealcosts}</td>
+													>{row.dealcosts.toLocaleString('en')}</td>
 												</tr>
 											))
 										}  

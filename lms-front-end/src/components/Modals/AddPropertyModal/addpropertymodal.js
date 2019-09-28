@@ -1,16 +1,19 @@
 import React from 'react';
 import './addpropertymodal.css';
-import Select from 'react-select';
-import {css} from 'emotion';
 
 function validate(propertyname, address, city, rentablearea, storeys) { 
   return {
     propertyname: (propertyname.length === 0),
     address: (address.length === 0),
     city: (city.length === 0),
-    rentablearea: (rentablearea.length === 0),
-    storeys: (storeys.length === 0),
+    rentablearea: validateNumber(rentablearea),
+    storeys: validateNumber(storeys),
   };
+}
+
+function validateNumber(input) {
+   var number = /^\d+$/;
+   return !(number.test(input) && input.length > 1);
 }
 
 class AddPropertyModal extends React.Component {
@@ -25,6 +28,8 @@ class AddPropertyModal extends React.Component {
       siteareasf: '',
       yearbuilt: '',
       yearacquired: '',
+      units: [],
+      fetchDone: false,
       touched: {
         propertyname: false,
         address: false,
@@ -66,7 +71,10 @@ class AddPropertyModal extends React.Component {
       })
       event.preventDefault();
       return;
+    }
 
+    for (var i = 1; i <= this.state.storeys; i++) {
+      this.state.units.push(`${i}00`);
     }
 
     fetch('http://localhost:3000/propertyedit', {
@@ -87,8 +95,20 @@ class AddPropertyModal extends React.Component {
       .then(property => {
         if(property) {
           this.props.handlePropertyNoAdd();
-        } else { console.log("uhoh")}
+          fetch('http://localhost:3000/units', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              propertyname: property.propertyname,
+              units: this.state.units,
+              rentablearea: property.rentablearea,
+              storeys: property.storeys,
+            })
+          })
+        }
       })
+/**/
+
     this.stateClear();
   }
 
@@ -157,6 +177,10 @@ class AddPropertyModal extends React.Component {
                 onChange = { this.onChange('rentablearea') }
                 onBlur = { this.handleBlur('rentablearea') }
               />
+              { shouldMarkError('rentablearea') ? (
+                <p className="addprop_error_text">Please input an integer value.</p>
+                ) : null
+              }
 
               <p className={shouldMarkError('storeys') ? "property-input-title-error" : "property-input-title"}>Storeys:</p>
               <input
@@ -166,14 +190,18 @@ class AddPropertyModal extends React.Component {
                 onChange = { this.onChange('storeys') }
                 onBlur = { this.handleBlur('storeys') }
               />
+              { shouldMarkError('storeys') ? (
+                <p className="addprop_error_text">Please input an integer value.</p>
+                ) : null
+              }
 
               <p className={shouldMarkError('siteareasf') ? "property-input-title-error" : "property-input-title"}>Site Area SF:</p>
               <input
                 type = "input"
                 className= "property-form-input"
                 value = { this.state.siteareasf }
-                onChange = { this.onChange('storeys') }
-                onBlur = { this.handleBlur('storeys') }
+                onChange = { this.onChange('siteareasf') }
+                onBlur = { this.handleBlur('siteareasf') }
               />
 
               <p className={shouldMarkError('yearbuilt') ? "property-input-title-error" : "property-input-title"}>Year Built:</p>
@@ -214,6 +242,7 @@ class AddPropertyModal extends React.Component {
               <input
                 type="cancel"
                 value="Cancel"
+                readOnly
                 className="button cancel-button"
                 onClick={ (event) => { this.stateClear(); this.props.handlePropertyNoAdd(); }}
               />

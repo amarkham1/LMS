@@ -1,17 +1,22 @@
-.container {
+.home-container {
     min-height: 100vh;
     width: 100%;
     margin: 0 !important;
     background: #EAEAEA;
 }
 
-.left-col {
+.home-left-col {
 	margin: 120px 5px 8px 8px;
 	width: calc(60% - 26px);
 	float: left;
 }
 
-.my-active-deals {
+.coming-soon {
+	color: red;
+	font-weight: bold;
+}
+
+.home-active-deals {
 	background-color: white;
 	flex: 1;
 	padding: 20px;
@@ -23,7 +28,7 @@
 	box-shadow: 1px 1px 3px #CACACA;
 }
 
-.recent-activity {
+.home-recent-activity {
 	background-color: white;
 	flex: 1;
 	padding: 20px;
@@ -34,15 +39,15 @@
 	box-shadow: 1px 1px 3px #CACACA;
 }
 
-.my-watchlist {
+.home-my-watchlist {
 
 }
 
-.company-wise {
+.home-company-wise {
 
 }
 
-.right-col {
+.home-right-col {
 	float: right;
 	margin-top: 120px;
 	margin-right: 10px;
@@ -50,7 +55,7 @@
 	width: calc(40% - 15px);
 }
 
-.company-stats {
+.home-company-stats {
 	background-color: white;
 	flex: 1;
 	padding: 20px;

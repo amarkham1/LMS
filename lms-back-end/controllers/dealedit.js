@@ -1,4 +1,4 @@
-const handleDealEdit = (req, res, db, bcrypt) => {
+const handleDealEdit = (req, res, db) => {
   const { tenant, property, unit, llbroker, ttbroker } = req.body;
   if (!tenant || !property || !unit || !llbroker || !ttbroker) {
     return res.status(400).json('incorrect form submission');

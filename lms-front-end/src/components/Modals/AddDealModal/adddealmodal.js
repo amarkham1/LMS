@@ -1,7 +1,6 @@
 import React from 'react';
 import './adddealmodal.css';
 import Select from 'react-select';
-import {css} from 'emotion';
 
 function validate(tenant, unit, property, llbroker, ttbroker) { 
   return {
@@ -99,7 +98,6 @@ class AddDealModal extends React.Component {
       })
 
     this.setState({loaded: true})
-
   }
 
   onTenantChange = (event) => {
@@ -181,6 +179,7 @@ class AddDealModal extends React.Component {
           this.props.handleDealNoAdd();
         } else { console.log("uhoh")}
       })
+      .then(() => { this.props.fetchDeals(); })
     this.stateClear();
   }
 

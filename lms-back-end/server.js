@@ -13,6 +13,7 @@ const dealneg = require('./controllers/dealneg');
 const property = require('./controllers/property');
 const propertyedit = require('./controllers/propertyedit');
 const adddealmodal = require('./controllers/adddealmodal');
+const units = require('./controllers/units');
 
 const db = knex({
   client: 'pg',
@@ -41,6 +42,7 @@ app.get('/dealneg/:id', (req, res) => { dealneg.handleDealNegGet(req, res, db)})
 app.get('/property', (req, res) => { property.handlePropertyGet(req, res, db)})
 app.get('/property/:id', (req, res) => { property.handlePropertyIDGet(req, res, db)})
 app.post('/propertyedit', (req, res) => { propertyedit.handlePropertyEdit(req, res, db)})
+app.post('/units', (req, res) => { units.handleUnits(req, res, db)})
 app.get('/adddealmodal/tenant', (req, res) => { adddealmodal.handleAddDealModalTenant(req, res, db)})
 app.get('/adddealmodal/property', (req, res) => { adddealmodal.handleAddDealModalProperty(req, res, db)})
 app.post('/adddealmodal/unit', (req, res) => { adddealmodal.handleAddDealModalUnit(req, res, db)})

@@ -18,9 +18,9 @@ class TopNav extends React.Component {
 	}
 
 	static defaultProps = {
-		firstName: 'Joe',
-		lastName: 'Blow',
-		isSignedIn: true,
+		firstName: '',
+		lastName: '',
+		isSignedIn: false,
 	}
 
 	constructor(props) {
@@ -81,7 +81,7 @@ class TopNav extends React.Component {
 				<div className="nav">
 				  <div className="top-nav">
 				    <div className="search-bar">
-				      <input type="text" placeholder="Search..." name="search" className="searchbox"/>
+				      <input type="text" placeholder="Search... (COMING SOON)" name="search" className="searchbox"/>
 					</div>
 					<div className="account">
 					    <div className="alerticon" onClick={this.showAlertMenu}>

@@ -19,6 +19,7 @@ class Deals extends React.Component {
 		this.handleDealNoAdd = this.handleDealNoAdd.bind(this);
 		this.handleDealClick = this.handleDealClick.bind(this);
 		this.handleDealEdit = this.handleDealEdit.bind(this);
+		this.fetchDeals = this.fetchDeals.bind(this);
 	}
 
 	fetchDeals() {
@@ -79,13 +80,12 @@ class Deals extends React.Component {
 	}
 
 	render() {
-	  const { onRouteChange } = this.props;
 		return (
 		  <div>
 			  { !this.state.dealedit ? 
 			  	(
 			  	  <div className="container">
-				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd}/>
+				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd} />
 					<div className="dealslist">
 				 	  <div className="deal-buttons">
 						<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />

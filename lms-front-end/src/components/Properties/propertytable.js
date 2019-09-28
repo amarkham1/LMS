@@ -13,7 +13,6 @@ class PropertyTable extends React.Component {
 	}
 
 	handlePropertyClick(row) {
-		console.log('row id', row.id);
 		this.setState({
 			propertySelected: row.id,
 		})
@@ -29,8 +28,6 @@ class PropertyTable extends React.Component {
 							<th className="big title left">Property</th>
 							<th className="big title left">Address</th>
 							<th className="mid title left">City</th>
-							<th className="mid title left">Province</th>
-							<th className="mid title left">Portfolio</th>
 							<th className="mid title left">GLA (SF)</th>
 							<th className="mid title left">Storeys</th>
 							<th className="mid title left">Site Area (SF)</th>
@@ -45,7 +42,7 @@ class PropertyTable extends React.Component {
 								  key={row.id} 
 								  className={ this.state.propertySelected === row.id ? "tr active" : "tr" }>
 									<td 
-										className="mid left rows toprow"
+										className="large left rows toprow"
 										onClick={() => this.handlePropertyClick(row)}
 									>{row.propertyname}</td>
 									<td 
@@ -59,29 +56,21 @@ class PropertyTable extends React.Component {
 									<td 
 										className="mid left rows"
 										onClick={() => this.handlePropertyClick(row)}
-									>{row.province}</td>
+									>{row.rentablearea.toLocaleString('en')}</td>
 									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.portfolio}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.rentablearea}</td>
-									<td 
-										className="mid left rows"
+										className="small left rows"
 										onClick={() => this.handlePropertyClick(row)}
 									>{row.storeys}</td>
 									<td 
-										className="mid left rows"
+										className="large left rows"
 										onClick={() => this.handlePropertyClick(row)}
-									>{row.siteareasf}</td>
+									>{row.siteareasf.toLocaleString('en')}</td>
 									<td 
 										className="mid left rows"
 										onClick={() => this.handlePropertyClick(row)}
 									>{row.yearbuilt}</td>
 									<td 
-										className="small left rows"
+										className="mid left rows"
 										onClick={() => this.handlePropertyClick(row)}
 									>{row.yearacquired}</td>
 								</tr>

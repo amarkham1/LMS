@@ -1,8 +1,9 @@
-const handlePropertyEdit = (req, res, db, bcrypt) => {
+const handlePropertyEdit = (req, res, db) => {
   const { propertyname, address, city, rentablearea, storeys, siteareasf, yearbuilt, yearacquired } = req.body;
   if (!propertyname || !address || !city || !rentablearea || !storeys) {
     return res.status(400).json('incorrect form submission');
   }
+
     db.transaction(trx => {
       trx.insert({
         propertyname: propertyname,
@@ -18,11 +19,11 @@ const handlePropertyEdit = (req, res, db, bcrypt) => {
       .returning('*')
       .then(property => {
             res.json(property[0]);
-          })
+      })
       .then(trx.commit)
       .catch(trx.rollback)
     })
-    .catch(err => res.status(400).json('unable to register'))
+    .catch(function(error) { console.log('Error', error); });
 }
 
 module.exports = {
