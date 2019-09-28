@@ -21,7 +21,7 @@ class Properties extends React.Component {
 	}
 
 	fetchProperties() {
-		fetch('http://localhost:3000/property', {
+		fetch('https://intense-temple-63357.herokuapp.com/property', {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		})

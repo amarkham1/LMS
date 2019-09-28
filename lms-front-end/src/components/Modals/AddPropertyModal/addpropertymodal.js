@@ -77,7 +77,7 @@ class AddPropertyModal extends React.Component {
       this.state.units.push(`${i}00`);
     }
 
-    fetch('http://localhost:3000/propertyedit', {
+    fetch('https://intense-temple-63357.herokuapp.com/propertyedit', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -95,7 +95,7 @@ class AddPropertyModal extends React.Component {
       .then(property => {
         if(property) {
           this.props.handlePropertyNoAdd();
-          fetch('http://localhost:3000/units', {
+          fetch('https://intense-temple-63357.herokuapp.com/units', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

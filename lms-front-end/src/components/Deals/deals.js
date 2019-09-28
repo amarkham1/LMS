@@ -23,7 +23,7 @@ class Deals extends React.Component {
 	}
 
 	fetchDeals() {
-		fetch('http://localhost:3000/deals', {
+		fetch('https://intense-temple-63357.herokuapp.com/deals', {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
 		})
@@ -59,7 +59,7 @@ class Deals extends React.Component {
 	}
 
 	onEditDeal() {
-		fetch('http://localhost:3000/deals/:id', {
+		fetch('https://intense-temple-63357.herokuapp.com/deals/:id', {
 				method: 'get',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({

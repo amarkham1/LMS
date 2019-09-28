@@ -116,7 +116,7 @@ class AddNegotiationModal extends React.Component {
   }
 
   async componentDidMount() {
-    await fetch('http://localhost:3000/adddealmodal/property', {
+    await fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/property', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
     })
@@ -135,7 +135,7 @@ class AddNegotiationModal extends React.Component {
       propertyname: event.value.propertyname,
     })
 
-    fetch('http://localhost:3000/adddealmodal/unit', {
+    fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/unit', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -204,7 +204,7 @@ class AddNegotiationModal extends React.Component {
       return;
     }
 
-    const fetchURL = `http://localhost:3000/dealneg/${this.props.dealid}`;
+    const fetchURL = `https://intense-temple-63357.herokuapp.com/dealneg/${this.props.dealid}`;
     fetch(fetchURL, {
       method: 'post',
       headers: {'Content-Type': 'application/json'},

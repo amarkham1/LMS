@@ -49,7 +49,7 @@ class AddDealModal extends React.Component {
 
   async componentDidMount() {
 
-    await fetch('http://localhost:3000/adddealmodal/tenant', {
+    await fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/tenant', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
     })
@@ -61,7 +61,7 @@ class AddDealModal extends React.Component {
         });      
       })
 
-    await fetch('http://localhost:3000/adddealmodal/property', {
+    await fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/property', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
     })
@@ -73,7 +73,7 @@ class AddDealModal extends React.Component {
         });      
       })
 
-    await fetch('http://localhost:3000/adddealmodal/llbroker', {
+    await fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/llbroker', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
     })
@@ -85,7 +85,7 @@ class AddDealModal extends React.Component {
         });      
       })
 
-    await fetch('http://localhost:3000/adddealmodal/ttbroker', {
+    await fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/ttbroker', {
       method: 'get',
       headers: {'Content-Type': 'application/json'},
     })
@@ -109,7 +109,7 @@ class AddDealModal extends React.Component {
       property: event.value.propertyname,
     })
 
-      fetch('http://localhost:3000/adddealmodal/unit', {
+      fetch('https://intense-temple-63357.herokuapp.com/adddealmodal/unit', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -162,7 +162,7 @@ class AddDealModal extends React.Component {
 
     }
 
-    fetch('http://localhost:3000/dealsedit', {
+    fetch('https://intense-temple-63357.herokuapp.com/dealsedit', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
