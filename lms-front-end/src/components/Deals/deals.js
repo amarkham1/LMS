@@ -85,7 +85,7 @@ class Deals extends React.Component {
 			  { !this.state.dealedit ? 
 			  	(
 			  	  <div className="container">
-				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd} />
+				  <AddDealModal handleDealNoAdd={this.handleDealNoAdd} show={this.state.dealadd} fetchDeals={this.fetchDeals} />
 					<div className="dealslist">
 				 	  <div className="deal-buttons">
 						<input className="btn" onClick={this.handleDealAdd} type="button" value="ADD DEAL" />
