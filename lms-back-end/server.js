@@ -50,6 +50,6 @@ app.get('/adddealmodal/llbroker', (req, res) => { adddealmodal.handleAddDealModa
 app.get('/adddealmodal/ttbroker', (req, res) => { adddealmodal.handleAddDealModalTTBroker(req, res, db)})
 
 
-app.listen(3000, ()=> {
-  console.log('app is running on port 3000');
+app.listen(process.env.PORT || 3000, ()=> {
+  console.log(`app is running on port ${process.env.PORT}`);
 })
