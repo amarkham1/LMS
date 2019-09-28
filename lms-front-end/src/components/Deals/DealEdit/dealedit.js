@@ -27,7 +27,7 @@ class DealEdit extends React.Component {
 	}
 
 	loadDeal() {
-		const fetchURLdeals = `http://localhost:3000/deals/${this.props.dealid}`; /* ${this.props.dealid} */
+		const fetchURLdeals = `https://intense-temple-63357.herokuapp.com/deals/${this.props.dealid}`; /* ${this.props.dealid} */
 		fetch(fetchURLdeals, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
@@ -40,7 +40,7 @@ class DealEdit extends React.Component {
 		  	  	})
 		    })
 
-		const fetchURLdealnegs = `http://localhost:3000/dealneg/${this.props.dealid}`;
+		const fetchURLdealnegs = `https://intense-temple-63357.herokuapp.com/dealneg/${this.props.dealid}`;
 		fetch(fetchURLdealnegs, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'},
@@ -85,7 +85,7 @@ class DealEdit extends React.Component {
 	}
 
 	handleSubmit = () => {
-		fetch('http://localhost:3000/dealsedit', {
+		fetch('https://intense-temple-63357.herokuapp.com/dealsedit', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
