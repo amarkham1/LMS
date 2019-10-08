@@ -15,19 +15,16 @@ const propertyedit = require("./controllers/propertyedit");
 const adddealmodal = require("./controllers/adddealmodal");
 const units = require("./controllers/units");
 
-const local = true;
-
-if (local = true) {
-	const db = knex({
-		client: 'pg',
-		connection: {
-			host: '127.0.0.1',
-			user: 'user',
-			password: '',
-			database: 'lmstest',
-		}
-	});
-} else {
+const db = knex({
+	client: "pg",
+	connection: {
+		host: "127.0.0.1",
+		user: "user",
+		password: "",
+		database: "lms-database"
+	}
+});
+/*
 	const db = knex({
 		client: "pg",
 		connection: {
@@ -35,7 +32,7 @@ if (local = true) {
 			ss1: true
 		}
 	});
-}
+*/
 
 const app = express();
 
