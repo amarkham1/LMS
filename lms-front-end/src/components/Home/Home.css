@@ -1,0 +1,68 @@
+.home-container {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 !important;
+    background: #EAEAEA;
+}
+
+.home-left-col {
+	margin: 120px 5px 8px 8px;
+	width: calc(60% - 26px);
+	float: left;
+}
+
+.coming-soon {
+	color: red;
+	font-weight: bold;
+}
+
+.home-active-deals {
+	background-color: white;
+	flex: 1;
+	padding: 20px;
+	margin-bottom: 10px;
+	overflow: auto;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
+
+.home-recent-activity {
+	background-color: white;
+	flex: 1;
+	padding: 20px;
+	overflow: auto;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
+
+.home-my-watchlist {
+
+}
+
+.home-company-wise {
+
+}
+
+.home-right-col {
+	float: right;
+	margin-top: 120px;
+	margin-right: 10px;
+	margin-left: 5px;
+	width: calc(40% - 15px);
+}
+
+.home-company-stats {
+	background-color: white;
+	flex: 1;
+	padding: 20px;
+	overflow: auto;
+	margin-bottom: 10px;
+	border-style: solid;
+	border-width: 0.5px;
+	border-color: #CACACA;
+	box-shadow: 1px 1px 3px #CACACA;
+}
