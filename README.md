@@ -8,7 +8,7 @@ The app uses the following key packages/technologies:
 - bcrypt, in order to encrypt/hash users passwords when registering
 - Knex.js, in order to connect and communicate with the database
 - Moment.js, for creating and manipulating dates
-- react-select, for its dropdowns used in forms
+- react-select, used as dropdown menus in forms
 
 ## Running In Development Mode
 
