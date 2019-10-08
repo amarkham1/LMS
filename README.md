@@ -1,6 +1,6 @@
 # Lease Management System
 
-This is a full-stack Javascript web-based app which enables its users - predominantly commercial real estate brokers and landlords - to manage and track the status of current lease transactions within the portfolio. Much of the desired functionality is under construction, however users can currently register and log in/out of the system; view current ongoing deals with tenants; and dive into those deals, adding in Negotiation Details as the negotiation progresses and counter-offers are made. The app uses Node.js on the back-end, React on the front-end, and PostGreSQLs for the database. It is deployed through Heroku and is currently live at https://leasingmgmtsys.herokuapp.com/.
+This is a full-stack Javascript web-based app which enables its users - predominantly commercial real estate brokers and landlords - to manage and track the status of current lease transactions within the portfolio. Much of the desired functionality is under construction, however users can currently register and log in/out of the system; view ongoing deals with tenants; and dive into those deals, adding in Negotiation Details as the negotiation progresses and counter-offers are made. The app uses Node.js on the back-end, React on the front-end, and PostGreSQL. It is deployed through Heroku and is currently live at https://leasingmgmtsys.herokuapp.com/.
 
 ## Tech Stack
 
