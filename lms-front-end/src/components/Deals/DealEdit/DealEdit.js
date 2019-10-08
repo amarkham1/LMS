@@ -1,7 +1,7 @@
 import React from "react";
-import "./dealedit.css";
+import "./DealEdit.css";
 import moment from "moment";
-import AddNegotiationModal from "../../Modals/AddNegotiationModal/addnegotiationmodal.js";
+import AddNegotiationModal from "../../Modals/AddNegotiationModal/AddNegotiationModal.js";
 import PropTypes from "prop-types";
 
 class DealEdit extends React.Component {
