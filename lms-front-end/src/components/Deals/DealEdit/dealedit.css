@@ -1,8 +1,8 @@
 .dealedit-container {
-    min-height: 100vh;
-    width: 100%;
-    margin: 0 !important;
-    background: #EAEAEA;
+	min-height: 100vh;
+	width: 100%;
+	margin: 0 !important;
+	background: #eaeaea;
 }
 
 .dealedit-left-col {
@@ -21,8 +21,8 @@
 	overflow: auto;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 	height: 280px;
 }
 
@@ -62,7 +62,7 @@
 .dealedit-boxtitle {
 	font-size: 14px;
 	font-weight: bold;
-	color: #22672A;
+	color: #22672a;
 }
 
 .de-dropdown {
@@ -79,7 +79,6 @@
 	display: flex;
 	margin-left: 0;
 	padding-bottom: 10px;
-
 }
 
 .inputbox {
@@ -101,8 +100,8 @@
 	overflow: auto;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 }
 
 .dealedit-right-col {
@@ -122,8 +121,8 @@
 	margin-bottom: 10px;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 }
 
 .subtitle {
@@ -133,7 +132,7 @@
 
 .btn {
 	float: left;
-	border: 2px solid #22672A;
+	border: 2px solid #22672a;
 	border-radius: 5px;
 	background-color: white;
 	padding: 3px 10px 3px 10px;
@@ -141,7 +140,7 @@
 }
 
 .btn:hover {
-	background-color: #22672A;
+	background-color: #22672a;
 	color: white;
 }
 
@@ -152,7 +151,7 @@
 }
 
 .active {
-	background-color: #BFD6C2 !important;
+	background-color: #bfd6c2 !important;
 }
 
 .title {
@@ -182,19 +181,18 @@
 
 .de-titlerow {
 	background-color: white !important;
-	color: #22672A !important;
-	border-bottom: 1px solid #CACACA;
+	color: #22672a !important;
+	border-bottom: 1px solid #cacaca;
 	height: 40px;
 	margin-bottom: 40px;
-
 }
 
 .tr {
-	border-bottom: 1px solid #EAEAEA;
+	border-bottom: 1px solid #eaeaea;
 }
 
 .tr:hover {
-	background-color: #EAEAEA;
+	background-color: #eaeaea;
 }
 
 .de-left {

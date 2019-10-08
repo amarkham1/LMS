@@ -1,5 +1,5 @@
 .active {
-	background-color: #BFD6C2 !important;
+	background-color: #bfd6c2 !important;
 }
 
 .title {
@@ -28,20 +28,19 @@
 }
 
 .titlerow {
-	background-color: #22672A;
+	background-color: #22672a;
 	color: white;
-	border-bottom: 1px solid #CACACA;
+	border-bottom: 1px solid #cacaca;
 	height: 40px;
 	margin-bottom: 40px;
-
 }
 
 .tr {
-	border-bottom: 1px solid #EAEAEA;
+	border-bottom: 1px solid #eaeaea;
 }
 
 .tr:hover {
-	background-color: #EAEAEA;
+	background-color: #eaeaea;
 }
 
 .left {

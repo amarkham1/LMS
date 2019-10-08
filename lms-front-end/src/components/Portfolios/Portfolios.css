@@ -1,8 +1,8 @@
 .container {
-    min-height: 100vh;
-    width: 100%;
-    margin: 0 !important;
-    background: #EAEAEA;
+	min-height: 100vh;
+	width: 100%;
+	margin: 0 !important;
+	background: #eaeaea;
 }
 
 .propertylist {
@@ -13,8 +13,8 @@
 	overflow: auto;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 }
 
 .coming-soon {

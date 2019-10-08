@@ -1,5 +1,4 @@
-
-a { 
+a {
 	text-decoration: none;
 }
 
@@ -29,7 +28,7 @@ a {
 }
 
 .searchbox {
-	border: 1px solid #CACACA;
+	border: 1px solid #cacaca;
 	border-radius: 5px;
 	padding-left: 10px;
 	height: 80%;
@@ -58,8 +57,8 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #EAEAEA;
-	border: 1px solid #22672A;
+	background-color: #eaeaea;
+	border: 1px solid #22672a;
 	border-radius: 100px;
 	width: 30px;
 	height: 30px;
@@ -67,7 +66,7 @@ a {
 }
 
 .avatar:hover {
-	border: 2px solid #22672A;
+	border: 2px solid #22672a;
 }
 
 .alertmenu {
@@ -81,8 +80,8 @@ a {
 	z-index: 10000;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 }
 
 .profilemenu {
@@ -96,8 +95,8 @@ a {
 	z-index: 10000;
 	border-style: solid;
 	border-width: 0.5px;
-	border-color: #CACACA;
-	box-shadow: 1px 1px 3px #CACACA;
+	border-color: #cacaca;
+	box-shadow: 1px 1px 3px #cacaca;
 }
 
 .loggedin {
@@ -107,7 +106,7 @@ a {
 
 .alerttitle {
 	color: black;
-	border-bottom: 1px solid #CACACA;
+	border-bottom: 1px solid #cacaca;
 	padding-bottom: 5px;
 	margin-bottom: 15px;
 }
@@ -117,13 +116,13 @@ a {
 	margin-top: 0px;
 	padding-bottom: 5px;
 	margin-bottom: 15px;
-	border-bottom: 1px solid #CACACA;
+	border-bottom: 1px solid #cacaca;
 	font-weight: bold;
 }
 
 .profilelist {
 	margin-bottom: 0px;
-	color: #001E70;
+	color: #001e70;
 	cursor: pointer;
 }
 
@@ -136,7 +135,7 @@ a {
 	flex-direction: row;
 	background-color: white;
 	margin-top: 45px;
-	border-bottom: 2px solid #22762A;
+	border-bottom: 2px solid #22762a;
 }
 
 .icons {
@@ -168,7 +167,7 @@ a {
 }
 
 .navicon:hover {
-	background-color: #CEE3D1;
+	background-color: #cee3d1;
 	border-top: 2px solid #013007;
 	transition: 0.5s;
 }

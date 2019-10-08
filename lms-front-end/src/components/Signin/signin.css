@@ -1,16 +1,15 @@
 * {
   margin: 0px auto;
   padding: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .cont_principal {
   position: absolute;
   width: 100%;
   height: 100%;
-/* Rectangle 3: */
-  background: #EAEAEA;
+  /* Rectangle 3: */
+  background: #eaeaea;
 }
-
 
 .error-above {
   float: center;
@@ -18,67 +17,65 @@
   margin-right: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #FFCCCC;
+  background-color: #ffcccc;
   border-style: solid;
   border-width: 0.5px;
-  border-color: #CACACA;
+  border-color: #cacaca;
 }
 
 .cont_centrar {
   position: absolute;
   width: 320px;
-  left:50%;
-  top:40%;
+  left: 50%;
+  top: 40%;
   margin-left: -160px;
   margin-top: -160px;
   border-style: solid;
   border-width: 0.5px;
-  border-color: #CACACA;
-  box-shadow: 1px 1px 3px #CACACA;
+  border-color: #cacaca;
+  box-shadow: 1px 1px 3px #cacaca;
 }
 
 .cont_centrar {
   position: relative;
   width: 320px;
   float: left;
-  background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
+  background-image: linear-gradient(-226deg, #ffffff 8%, #eef3f5 100%);
   border-radius: 6px;
   transition: all 0.5s;
 }
 
 .cent_active {
-    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.21);
 }
 
 .cont_tabs_login {
-position: relative;
+  position: relative;
   float: left;
   width: 100%;
 }
 
-.ul_tabs > li { 
-position: relative;
+.ul_tabs > li {
+  position: relative;
   float: left;
   width: 50%;
   list-style: none;
   text-align: center;
-
 }
 
-.ul_tabs > li > p  {  
-text-decoration: none;
-font-family: Helvetica;
-font-size: 16px;
-    color: #999;
-line-height: 14px;
-padding: 20px ;
-display: block;
-transition: all 0.5s;
+.ul_tabs > li > p {
+  text-decoration: none;
+  font-family: Helvetica;
+  font-size: 16px;
+  color: #999;
+  line-height: 14px;
+  padding: 20px;
+  display: block;
+  transition: all 0.5s;
 }
 
-  .ul_tabs > .active > p  {  
-color: #22672A;
-
+.ul_tabs > .active > p {
+  color: #22672a;
 }
 
 .linea_bajo_nom {
@@ -93,12 +90,12 @@ color: #22672A;
   position: relative;
   width: 100%;
   float: left;
-background-color: #22672A;
-height: 3px;
+  background-color: #22672a;
+  height: 3px;
 }
 
 .cont_text_inputs {
-position: relative;
+  position: relative;
   float: left;
   width: 100%;
   margin-top: 20px;
@@ -109,32 +106,31 @@ position: relative;
   float: left;
   width: 90%;
   border: none;
-  border-bottom: 1px solid #B0BEC5 ;
+  border-bottom: 1px solid #b0bec5;
   background-color: transparent;
   font-size: 14px;
   outline: none;
   transition: all 0.5s;
-    height: 0px;
-    margin: 0px;
-    padding: 0px;  
-opacity: 0;
-display: none;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+  opacity: 0;
+  display: none;
 }
 
 .active_inp {
-  margin: 5% 5% ;  
+  margin: 5% 5%;
   padding: 10px 0px;
   opacity: 1;
-height: 5px;
+  height: 5px;
 }
 
-
-
 .input_form_sign:focus {
-  border-bottom: 1px solid #22672A ;}
+  border-bottom: 1px solid #22672a;
+}
 
 .link_forgot_pass {
-position: relative;
+  position: relative;
   margin-top: 0px;
   margin-left: 30%;
   text-decoration: none;
@@ -150,14 +146,14 @@ position: relative;
 }
 
 .btn_sign {
-  background: rgba(34,103,42,0.74);
-  box-shadow: 0px 2px 20px 2px rgba(34,103,42,0.50);
+  background: rgba(34, 103, 42, 0.74);
+  box-shadow: 0px 2px 20px 2px rgba(34, 103, 42, 0.5);
   border-radius: 8px;
   padding: 15px 30px;
   border: none;
   color: #fff;
   font-size: 14px;
-  position: relative;  
+  position: relative;
   float: left;
   margin-left: 100px;
   margin-top: 20px;
@@ -166,7 +162,7 @@ position: relative;
 }
 
 .terms_and_cons {
-  width: 70%;  
+  width: 70%;
   color: #999;
   font-size: 13px;
   transition: all 0.5s;
@@ -180,17 +176,16 @@ position: relative;
   display: block;
 }
 
-.cont_text_inputs > input:nth-child(1){
+.cont_text_inputs > input:nth-child(1) {
   transition-delay: 0.2s;
 }
 
-.cont_text_inputs > input:nth-child(2){
+.cont_text_inputs > input:nth-child(2) {
   transition-delay: 0.4s;
 }
-.cont_text_inputs > input:nth-child(3){
+.cont_text_inputs > input:nth-child(3) {
   transition-delay: 0.6s;
 }
-.cont_text_inputs > input:nth-child(4){
+.cont_text_inputs > input:nth-child(4) {
   transition-delay: 0.8s;
 }
- 

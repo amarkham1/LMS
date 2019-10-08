@@ -1,4 +1,3 @@
-
 a {
 	text-decoration: none;
 }
@@ -6,7 +5,7 @@ a {
 .sidebar {
 	width: 100%;
 	height: 80px;
-	background-color: #22672A;
+	background-color: #22672a;
 	color: white;
 	font-weight: bold;
 	position: fixed;
@@ -20,11 +19,10 @@ a {
 }
 
 .navicon:hover {
-	background-color: #CEE3D1;
+	background-color: #cee3d1;
 }
 
 .navicon:visited {
 	text-decoration: none;
 	color: white;
 }
-

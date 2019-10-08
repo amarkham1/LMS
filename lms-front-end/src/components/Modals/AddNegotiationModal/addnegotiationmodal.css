@@ -2,22 +2,22 @@
   position: fixed;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   z-index: 1;
 }
 
- .neg-modal-main {
-  position:fixed;
+.neg-modal-main {
+  position: fixed;
   text-align: left;
   width: 700px !important;
   height: 700px !important;
-  top:60% !important;
+  top: 60% !important;
   overflow-y: scroll !important;
-  left:50%;
-  transform: translate(-50%,-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .neg-modal-title {
@@ -32,7 +32,7 @@
   position: fixed;
   text-align: left;
   padding-left: 20px;
-  background-color: #22672A;
+  background-color: #22672a;
 }
 
 .subcategory {
@@ -58,7 +58,7 @@
   padding-top: 15px;
   padding-bottom: 0px;
   height: 40px;
-  border-bottom: 2px solid #EAEAEA;
+  border-bottom: 2px solid #eaeaea;
   width: 100% !important;
 }
 
@@ -86,7 +86,7 @@
 .rightbox {
   width: calc(50% - 15px);
   margin: 0 0 0 15px;
-  height: 300px; 
+  height: 300px;
   float: right;
 }
 
@@ -109,7 +109,6 @@
   width: 100%;
   height: auto;
   padding-bottom: 80px;
-
 }
 
 .neg-form-input {
@@ -146,11 +145,10 @@
   margin-top: 0px;
   margin-bottom: 5px;
   margin-left: 0px;
-  color: red; 
+  color: red;
 }
 
 .input-subtitle {
-
 }
 
 .line {
@@ -160,7 +158,7 @@
   position: relative;
   float: center;
   height: 1px;
-  background: #EAEAEA;
+  background: #eaeaea;
 }
 
 .neg-buttons {
@@ -185,7 +183,7 @@
   border: none;
   color: #fff;
   font-size: 14px;
-  position: relative;  
+  position: relative;
   margin-left: 10px;
   margin-top: 10px;
   text-align: center;
@@ -194,18 +192,18 @@
 }
 
 .add-button {
-  background: rgba(34,103,42,0.74);
-  box-shadow: 0px 2px 20px 2px rgba(34,103,42,0.50);
+  background: rgba(34, 103, 42, 0.74);
+  box-shadow: 0px 2px 20px 2px rgba(34, 103, 42, 0.5);
 }
 
 .add-button-error {
-  background: rgba(202,202,202,0.74);
-  box-shadow: 0px 2px 20px 2px rgba(202,202,202,0.50);
+  background: rgba(202, 202, 202, 0.74);
+  box-shadow: 0px 2px 20px 2px rgba(202, 202, 202, 0.5);
 }
 
 .cancel-button {
-  background: rgba(128,128,128,0.74);
-  box-shadow: 0px 2px 20px 2px rgba(128,128,128,0.50);
+  background: rgba(128, 128, 128, 0.74);
+  box-shadow: 0px 2px 20px 2px rgba(128, 128, 128, 0.5);
 }
 
 .display-block {

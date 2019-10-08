@@ -1,21 +1,21 @@
-import React from 'react';
-import './PropertyTable.css';
+import React from "react";
+import "./PropertyTable.css";
 
 class PropertyTable extends React.Component {
 	constructor(props) {
 		super(props);
-		
+
 		this.state = {
 			propertydata: this.props.propertydata,
-			propertySelected: '',
-		}
+			propertySelected: ""
+		};
 		this.handlePropertyClick = this.handlePropertyClick.bind(this);
 	}
 
 	handlePropertyClick(row) {
 		this.setState({
-			propertySelected: row.id,
-		})
+			propertySelected: row.id
+		});
 		this.props.handlePropertyClick(row);
 	}
 
@@ -36,46 +36,81 @@ class PropertyTable extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-						{
-							this.state.propertydata.map(row => (
-								<tr
-								  key={row.id} 
-								  className={ this.state.propertySelected === row.id ? "tr active" : "tr" }>
-									<td 
-										className="large left rows toprow"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.propertyname}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.address}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.city}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.rentablearea.toLocaleString('en')}</td>
-									<td 
-										className="small left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.storeys}</td>
-									<td 
-										className="large left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.siteareasf.toLocaleString('en')}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.yearbuilt}</td>
-									<td 
-										className="mid left rows"
-										onClick={() => this.handlePropertyClick(row)}
-									>{row.yearacquired}</td>
-								</tr>
-							))
-						}  
+						{this.state.propertydata.map(row => (
+							<tr
+								key={row.id}
+								className={
+									this.state.propertySelected === row.id
+										? "tr active"
+										: "tr"
+								}
+							>
+								<td
+									className="large left rows toprow"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.propertyname}
+								</td>
+								<td
+									className="mid left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.address}
+								</td>
+								<td
+									className="mid left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.city}
+								</td>
+								<td
+									className="mid left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.rentablearea.toLocaleString("en")}
+								</td>
+								<td
+									className="small left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.storeys}
+								</td>
+								<td
+									className="large left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.siteareasf.toLocaleString("en")}
+								</td>
+								<td
+									className="mid left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.yearbuilt}
+								</td>
+								<td
+									className="mid left rows"
+									onClick={() =>
+										this.handlePropertyClick(row)
+									}
+								>
+									{row.yearacquired}
+								</td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 			</div>
