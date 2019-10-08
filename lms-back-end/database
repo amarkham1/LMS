@@ -1,0 +1,810 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.4
+-- Dumped by pg_dump version 11.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: dealdetail; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.dealdetail (
+    dealid integer NOT NULL,
+    propertyname character varying(100) NOT NULL,
+    unit character varying(20) NOT NULL,
+    gla integer NOT NULL,
+    status text NOT NULL,
+    active integer,
+    currdate date NOT NULL,
+    cdate date NOT NULL,
+    fdate date,
+    rent1 numeric(8,2) NOT NULL,
+    rent1end date NOT NULL,
+    ti numeric(8,2) NOT NULL,
+    intcomm numeric(8,2) NOT NULL,
+    extcomm numeric(8,2) NOT NULL,
+    llw numeric(8,2) NOT NULL,
+    gfrent integer,
+    gfrentstart date,
+    gfrentend date,
+    rent1start date,
+    rent1months integer,
+    dealcosts integer,
+    marketner numeric(8,2),
+    adjner numeric(8,2),
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.dealdetail OWNER TO andrewmarkham;
+
+--
+-- Name: dealdetail_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.dealdetail_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.dealdetail_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: dealdetail_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.dealdetail_id_seq OWNED BY public.dealdetail.id;
+
+
+--
+-- Name: deals; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.deals (
+    id integer NOT NULL,
+    tenant character varying(100) NOT NULL,
+    property character varying(100) NOT NULL,
+    unit character varying(20) NOT NULL,
+    gla integer,
+    status text,
+    llbroker text NOT NULL,
+    ttbroker text NOT NULL,
+    cdate date,
+    adjner numeric(8,2),
+    dealcosts integer,
+    creationdate date NOT NULL,
+    type character varying(20)
+);
+
+
+ALTER TABLE public.deals OWNER TO andrewmarkham;
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.deals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.deals_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.deals_id_seq OWNED BY public.deals.id;
+
+
+--
+-- Name: existingtenants; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.existingtenants (
+    tenantname character varying(100) NOT NULL,
+    building character varying(100) NOT NULL,
+    unit character varying(10) NOT NULL,
+    rentablearea integer NOT NULL,
+    moveindate date,
+    fixturingdate date,
+    expirydate date NOT NULL,
+    currentrentpsf money NOT NULL,
+    currentrentuntil date NOT NULL,
+    rentstep1psf money,
+    rentstep1until date,
+    rentstep2psf money,
+    rentstep2until date,
+    rentstep3psf money,
+    rentstep3until date,
+    rentstep4psf money,
+    rentstep4until date,
+    rentstep5psf money,
+    rentstep5until date,
+    rentstep6psf money,
+    rentstep6until date,
+    rentstep7psf money,
+    rentstep7until date,
+    rentstep8psf money,
+    rentstep8until date,
+    rentstep9psf money,
+    rentstep9until date,
+    rentstep10psf money,
+    rentstep10until date
+);
+
+
+ALTER TABLE public.existingtenants OWNER TO andrewmarkham;
+
+--
+-- Name: llbroker; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.llbroker (
+    id integer NOT NULL,
+    brokername character varying(100) NOT NULL,
+    title character varying(100) NOT NULL,
+    assetclass character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.llbroker OWNER TO andrewmarkham;
+
+--
+-- Name: llbroker_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.llbroker_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.llbroker_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: llbroker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.llbroker_id_seq OWNED BY public.llbroker.id;
+
+
+--
+-- Name: login; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.login (
+    id integer NOT NULL,
+    hash character varying(100) NOT NULL,
+    email text NOT NULL
+);
+
+
+ALTER TABLE public.login OWNER TO andrewmarkham;
+
+--
+-- Name: login_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.login_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.login_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: login_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.login_id_seq OWNED BY public.login.id;
+
+
+--
+-- Name: properties; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.properties (
+    propertyname character varying(100) NOT NULL,
+    address character varying(150) NOT NULL,
+    city character varying(50) NOT NULL,
+    rentablearea integer NOT NULL,
+    storeys smallint NOT NULL,
+    siteareasf integer,
+    yearbuilt integer,
+    yearacquired integer,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.properties OWNER TO andrewmarkham;
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.properties_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.properties_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.properties_id_seq OWNED BY public.properties.id;
+
+
+--
+-- Name: tenants; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.tenants (
+    tenantname character varying(100) NOT NULL,
+    industry character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.tenants OWNER TO andrewmarkham;
+
+--
+-- Name: ttbroker; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.ttbroker (
+    id integer NOT NULL,
+    brokername character varying(100) NOT NULL,
+    title character varying(100) NOT NULL,
+    company character varying(100) NOT NULL,
+    assetclass character varying(100)
+);
+
+
+ALTER TABLE public.ttbroker OWNER TO andrewmarkham;
+
+--
+-- Name: ttbroker_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.ttbroker_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ttbroker_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: ttbroker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.ttbroker_id_seq OWNED BY public.ttbroker.id;
+
+
+--
+-- Name: units; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.units (
+    propertyname character varying(100) NOT NULL,
+    unit character varying(100) NOT NULL,
+    gla integer NOT NULL
+);
+
+
+ALTER TABLE public.units OWNER TO andrewmarkham;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email text NOT NULL,
+    joined timestamp without time zone NOT NULL,
+    firstname character varying(100) NOT NULL,
+    lastname character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO andrewmarkham;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: andrewmarkham
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO andrewmarkham;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: andrewmarkham
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: dealdetail id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.dealdetail ALTER COLUMN id SET DEFAULT nextval('public.dealdetail_id_seq'::regclass);
+
+
+--
+-- Name: deals id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.deals ALTER COLUMN id SET DEFAULT nextval('public.deals_id_seq'::regclass);
+
+
+--
+-- Name: llbroker id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.llbroker ALTER COLUMN id SET DEFAULT nextval('public.llbroker_id_seq'::regclass);
+
+
+--
+-- Name: login id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.login ALTER COLUMN id SET DEFAULT nextval('public.login_id_seq'::regclass);
+
+
+--
+-- Name: properties id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.properties ALTER COLUMN id SET DEFAULT nextval('public.properties_id_seq'::regclass);
+
+
+--
+-- Name: ttbroker id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.ttbroker ALTER COLUMN id SET DEFAULT nextval('public.ttbroker_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: dealdetail; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.dealdetail (dealid, propertyname, unit, gla, status, active, currdate, cdate, fdate, rent1, rent1end, ti, intcomm, extcomm, llw, gfrent, gfrentstart, gfrentend, rent1start, rent1months, dealcosts, marketner, adjner, id) FROM stdin;
+13	Royalty Tower	200	5000	LL Signback	\N	2019-01-06	2019-04-01	2019-02-01	30.00	2024-03-31	35.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	1762755	\N	\N	1
+13	Royalty Tower	200	5000	TT Signback	\N	2019-01-06	2019-04-01	2019-02-01	32.00	2024-03-31	32.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	1612755	\N	\N	2
+13	Royalty Tower	200	5000	TT Signback 2	\N	2019-01-06	2019-04-01	2019-02-01	31.00	2024-03-31	35.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	1762755	\N	\N	3
+13	Royalty Tower	200	5000	TT Signback 3	\N	2019-01-06	2019-04-01	2019-02-01	30.50	2024-03-31	32.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	247500	\N	\N	4
+13	Royalty Tower	200	5000	LL Signback 2	\N	2019-01-06	2019-04-01	2019-02-01	31.00	2024-03-31	32.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	247500	\N	\N	5
+13	Royalty Tower	200	5000	LL Signback 3	\N	2019-01-06	2019-04-01	2019-02-01	31.50	2024-03-31	32.00	2.50	5.00	10.00	0	2019-04-01	2019-04-01	2019-04-01	60	247500	\N	\N	6
+13	Royalty Tower	200	10000	test	\N	2019-09-21	2019-04-01	2019-03-01	60.00	2024-03-31	50.00	5.00	10.00	0.00	5	2019-04-01	2019-05-01	2019-04-01	60	700000	\N	\N	7
+24	Exchange Tower	200	10000	TT Signback	\N	2019-09-27	2019-12-01	2019-11-01	60.00	2024-11-30	35.00	2.50	5.00	0.00	0	2019-12-01	2019-12-01	2019-12-01	60	425000	\N	\N	8
+\.
+
+
+--
+-- Data for Name: deals; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.deals (id, tenant, property, unit, gla, status, llbroker, ttbroker, cdate, adjner, dealcosts, creationdate, type) FROM stdin;
+14	Microsoft	Royalty Tower	600	\N	\N	Don McGee	Jen Falls	\N	\N	\N	2018-11-09	\N
+24	Apple	Royalty Tower	300	\N	\N	Don McGee	Jen Falls	\N	\N	\N	2018-11-23	\N
+13	RBC	Royalty Tower	200	\N	\N	Don McGee	Jen Falls	\N	\N	\N	2018-11-10	\N
+2	Metrolinx	Royalty Tower	410	\N	\N	Sarah Lang	Jen Falls	\N	\N	\N	2019-09-10	\N
+25	Ellis Don	Royalty Tower	200	\N	\N	Sarah Lang	Jen Falls	\N	\N	\N	2019-09-23	\N
+\.
+
+
+--
+-- Data for Name: existingtenants; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.existingtenants (tenantname, building, unit, rentablearea, moveindate, fixturingdate, expirydate, currentrentpsf, currentrentuntil, rentstep1psf, rentstep1until, rentstep2psf, rentstep2until, rentstep3psf, rentstep3until, rentstep4psf, rentstep4until, rentstep5psf, rentstep5until, rentstep6psf, rentstep6until, rentstep7psf, rentstep7until, rentstep8psf, rentstep8until, rentstep9psf, rentstep9until, rentstep10psf, rentstep10until) FROM stdin;
+\.
+
+
+--
+-- Data for Name: llbroker; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.llbroker (id, brokername, title, assetclass) FROM stdin;
+1	Don McGee	VP, Leasing	Office
+2	Sarah Lang	Director, Leasing	Industrial
+\.
+
+
+--
+-- Data for Name: login; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.login (id, hash, email) FROM stdin;
+6	$2a$10$SKzbGsqenvvK7n2b0cRD6uTqIrUG1k4YiMtwOrvl0BgECCVuJ4Yoq	am@gmail.com
+7	$2a$10$lBk4GN8fubMf7UZ74zluCOWFdJMPyk42mrFVNf5A0I52QqsXY.eMG	awd
+17	$2a$10$c86jsdfJ/2NS1uqXpKlxu.VmBrFBqOKLUCd8NH0YGX4q0RdfYspi.	awd123
+18	$2a$10$0AbcH3zYSwceF4QI97t5t.ocsvYLm0tDf205fbbzJYhFP2mvO1fyO	adad
+19	$2a$10$dNSuc5XS7sfaq6lrwmKoJ.eSpQXN0xyVhJbLJEfy62Rc0v6EVKyc6	afaf
+20	$2a$10$llI.yA11QTO0nAdivYJRAupheOhAdqYNFr3oHM81/B8k/FdJBWZE6	awaw
+21	$2a$10$L4ZP9/kk0xza3/6KJJ7wv.suzgdvNzp3CY0PyRBrA5tIsYnSY/dhy	aaaa
+23	$2a$10$qb/bYNMm37yvyEVExKoNluqr3MTdhh7TZx5KA//pdqTpO1FxnofZm	123
+24	$2a$10$./k23dkX5/3KB.sReFki0uOKvufh4mR8gkgoDKdKMcVVd10Unw7SW	123!@hotmail.com
+25	$2a$10$ppSfEXdkLDQleT4jp4U69uOON41HVbzvCVTX6natLnOIB5vegcAgq	awdk
+26	$2a$10$dpED4pnstt3viT5Qi/UdUuqTmpsaGMDFn6so42o6N97FoEMyjc0PS	ayay
+27	$2a$10$rpuoQ4woDPJ6t7JTOaJt4OIpzN7ck/30SXmfzqZ4GEQvIjr/3V0u2	hello
+28	$2a$10$0ifpv/ZZI6Huw3WLu6Wxveu9KjvnYdORbi542LWriCXJ3LEIWldq2	andrewjmarkham1@mgil.om
+29	$2a$10$gvMyNrynsliZ4ebted4hv.FQZ2c6/GX3tblt3F4kwQG2NadVaE5qS	mmmmmm
+30	$2a$10$b6tcE4gUGGzNpMv61ZG67.vrsc3Vw/fuCQYfrFgxilQregky4Y.K6	aa@a.com
+31	$2a$10$1Ed9tbjm1i.pAh/pFV.y3uvE5Bd231rEybT2.zy0LGgiiz/2fuYKy	and@gia.com
+32	$2a$10$BWMwTvBMf8CNT6.Af/YPOOPRsPo2W.MaoAK9XptT9P3ZBXJi7VnlC	andrewjmarkham1@gmail.com
+49	$2a$10$2rdmwhJaxglRrYo9QMP7wO1.dki4g7ckDQBKrAWjDXx5Kw/yKXPAW	joeblow@hotmail.com
+51	$2a$10$knOZqPOeaZBUC9boqxKJheo8vQNwuhjuXRscJ95csU70eby3Id.iK	jimbeam@hotmail.com
+52	$2a$10$zjq2m9paya8S2gNdTaTxUOS1jO0pZr3.zjEpY3drSAbYNtoNn8cbS	gillbill@hotmail.com
+53	$2a$10$Q4n79MvDYI52fpJJAh8xwexyAVytd3LbbzJpMxXhlGV/DUUPSCXoe	jbeen@gmail.com
+54	$2a$10$98KgTZMNJ2aLXjuWpkUoPeTCnsKpV74m8c92JOMF2R7sFKA4z4pAm	a@w.com
+55	$2a$10$FM71xVLmCxfJa385OJB1s.0Z0JtABzmyke2coZE0mgwVjTaZORlYi	a@b.ca
+\.
+
+
+--
+-- Data for Name: properties; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.properties (propertyname, address, city, rentablearea, storeys, siteareasf, yearbuilt, yearacquired, id) FROM stdin;
+Royalty Tower	100 Main St	Toronto	100000	5	30000	1987	1999	1
+Exchange Tower	11 Fake St	Victoria	500000	20	50000	2011	2007	45
+\.
+
+
+--
+-- Data for Name: tenants; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.tenants (tenantname, industry) FROM stdin;
+Microsoft	Information
+Apple	Other Services
+RBC	Finance and Insurance
+Ellis Don	Construction
+Shoppers Drug Mart	Retail Trade
+Berkshire Hathaway	Finance and Insurance
+Kaplan Inc	Educational Services
+Metrolinx	Transportation and Warehousing
+Department of National Defense	Public Administration
+\.
+
+
+--
+-- Data for Name: ttbroker; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.ttbroker (id, brokername, title, company, assetclass) FROM stdin;
+1	Jen Falls	Leasing Assistant	CBRE	Retail
+\.
+
+
+--
+-- Data for Name: units; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.units (propertyname, unit, gla) FROM stdin;
+Royalty Tower	100	15000
+Royalty Tower	200	15000
+Royalty Tower	300	10000
+Royalty Tower	310	5000
+Royalty Tower	400	15000
+Royalty Tower	500	15000
+Royalty Tower	600	4000
+Royalty Tower	610	3000
+Royalty Tower	620	3500
+Royalty Tower	700	5000
+Exchange Tower	100	25000
+Exchange Tower	200	25000
+Exchange Tower	300	25000
+Exchange Tower	400	25000
+Exchange Tower	500	25000
+Exchange Tower	600	25000
+Exchange Tower	700	25000
+Exchange Tower	800	25000
+Exchange Tower	900	25000
+Exchange Tower	1000	25000
+Exchange Tower	1100	25000
+Exchange Tower	1200	25000
+Exchange Tower	1300	25000
+Exchange Tower	1400	25000
+Exchange Tower	1500	25000
+Exchange Tower	1600	25000
+Exchange Tower	1700	25000
+Exchange Tower	1800	25000
+Exchange Tower	1900	25000
+Exchange Tower	2000	25000
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: andrewmarkham
+--
+
+COPY public.users (id, email, joined, firstname, lastname) FROM stdin;
+4	am@gmail.com	2018-10-12 18:16:16.715	Andy	Moham
+5	awd	2018-10-13 10:42:48.968	awd	awd
+6	awd123	2018-10-13 13:57:04.308	awddd	awddd
+7	adad	2018-10-13 14:00:00.234	adad	adad
+8	afaf	2018-10-13 14:00:29.677	afaf	afaf
+9	awaw	2018-10-13 14:02:07.128	awaw	awaw
+10	aaaa	2018-10-13 14:03:25.97	aa	aa
+11	123	2018-10-13 14:17:20.327	123	123
+12	123!@hotmail.com	2018-10-13 14:18:25.608	jim	beam
+13	awdk	2018-10-13 14:27:26.562	awdk	awdk
+14	ayay	2018-10-13 14:29:30.21	ayay	ayay
+15	hello	2018-10-13 14:43:24.882	awd	awkward
+16	andrewjmarkham1@mgil.om	2018-10-13 14:46:33.627	andrew	m
+17	mmmmmm	2018-10-13 14:47:55.364	andy	mmmm
+18	aa@a.com	2018-10-13 17:08:14.867	aa	aa
+19	and@gia.com	2018-10-13 17:09:34.102	andrew	markham
+20	andrewjmarkham1@gmail.com	2018-10-13 17:17:04.241	andrew	markham
+23	joeblow@hotmail.com	2018-10-15 07:33:10.225	Joe	Blow
+24	jimbeam@hotmail.com	2018-10-15 07:41:18.959	Jim	Beam
+25	gillbill@hotmail.com	2018-10-15 07:41:45.025	Gill	Bill
+26	jbeen@gmail.com	2019-03-28 07:20:24.716	Jim	Been
+27	a@w.com	2019-09-14 16:18:05.758	Andrew	Markham
+28	a@b.ca	2019-09-27 20:12:38.675	a	b
+\.
+
+
+--
+-- Name: dealdetail_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.dealdetail_id_seq', 8, true);
+
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.deals_id_seq', 33, true);
+
+
+--
+-- Name: llbroker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.llbroker_id_seq', 1, false);
+
+
+--
+-- Name: login_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.login_id_seq', 55, true);
+
+
+--
+-- Name: properties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.properties_id_seq', 45, true);
+
+
+--
+-- Name: ttbroker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.ttbroker_id_seq', 1, false);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: andrewmarkham
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 28, true);
+
+
+--
+-- Name: dealdetail dealdetail_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.dealdetail
+    ADD CONSTRAINT dealdetail_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deals deals_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: existingtenants existingtenants_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.existingtenants
+    ADD CONSTRAINT existingtenants_pkey PRIMARY KEY (tenantname, building, unit);
+
+
+--
+-- Name: llbroker llbroker_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.llbroker
+    ADD CONSTRAINT llbroker_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: login login_email_key; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.login
+    ADD CONSTRAINT login_email_key UNIQUE (email);
+
+
+--
+-- Name: login login_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.login
+    ADD CONSTRAINT login_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: properties properties_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.properties
+    ADD CONSTRAINT properties_pkey PRIMARY KEY (propertyname);
+
+
+--
+-- Name: properties properties_propertyname_key; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.properties
+    ADD CONSTRAINT properties_propertyname_key UNIQUE (propertyname);
+
+
+--
+-- Name: tenants tenants_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.tenants
+    ADD CONSTRAINT tenants_pkey PRIMARY KEY (tenantname);
+
+
+--
+-- Name: ttbroker ttbroker_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.ttbroker
+    ADD CONSTRAINT ttbroker_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: units units_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.units
+    ADD CONSTRAINT units_pkey PRIMARY KEY (propertyname, unit);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dealdetail dealdetail_dealid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.dealdetail
+    ADD CONSTRAINT dealdetail_dealid_fkey FOREIGN KEY (dealid) REFERENCES public.deals(id);
+
+
+--
+-- Name: dealdetail dealdetail_propertyname_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.dealdetail
+    ADD CONSTRAINT dealdetail_propertyname_fkey FOREIGN KEY (propertyname, unit) REFERENCES public.units(propertyname, unit);
+
+
+--
+-- Name: deals deals_property_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_property_fkey FOREIGN KEY (property) REFERENCES public.properties(propertyname);
+
+
+--
+-- Name: deals deals_tenant_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_tenant_fkey FOREIGN KEY (tenant) REFERENCES public.tenants(tenantname);
+
+
+--
+-- Name: existingtenants existingtenants_tenantname_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.existingtenants
+    ADD CONSTRAINT existingtenants_tenantname_fkey FOREIGN KEY (tenantname) REFERENCES public.tenants(tenantname);
+
+
+--
+-- Name: units units_propertyname_fkey; Type: FK CONSTRAINT; Schema: public; Owner: andrewmarkham
+--
+
+ALTER TABLE ONLY public.units
+    ADD CONSTRAINT units_propertyname_fkey FOREIGN KEY (propertyname) REFERENCES public.properties(propertyname);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
