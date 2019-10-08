@@ -1,5 +1,5 @@
 import React from 'react';
-import './tenants.css';
+import './Tenants.css';
 
 class Tenants extends React.Component {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './adddealmodal.css';
+import './AddDealModal.css';
 import Select from 'react-select';
 
 function validate(tenant, unit, property, llbroker, ttbroker) { 

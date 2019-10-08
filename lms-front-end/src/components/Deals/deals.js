@@ -1,8 +1,8 @@
 import React from 'react';
-import './deals.css';
-import DealEdit from './DealEdit/dealedit.js';
-import AddDealModal from '../Modals/AddDealModal/adddealmodal.js';
-import DealTable from './dealtable.js';
+import './Deals.css';
+import DealEdit from './DealEdit/DealEdit.js';
+import AddDealModal from '../Modals/AddDealModal/AddDealModal.js';
+import DealTable from './DealTable.js';
 
 class Deals extends React.Component {
 	constructor(props) {

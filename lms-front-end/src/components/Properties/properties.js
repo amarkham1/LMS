@@ -1,7 +1,7 @@
 import React from 'react';
-import './properties.css';
-import AddPropertyModal from '../Modals/AddPropertyModal/addpropertymodal.js';
-import PropertyTable from './propertytable.js';
+import './Properties.css';
+import AddPropertyModal from '../Modals/AddPropertyModal/AddPropertyModal.js';
+import PropertyTable from './PropertyTable.js';
 
 class Properties extends React.Component {
 	constructor(props) {

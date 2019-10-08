@@ -1,5 +1,5 @@
 import React from 'react';
-import './reports.css';
+import './Reports.css';
 
 class Reports extends React.Component {
 

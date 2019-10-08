@@ -1,5 +1,5 @@
 import React from 'react';
-import './propertytable.css';
+import './PropertyTable.css';
 
 class PropertyTable extends React.Component {
 	constructor(props) {

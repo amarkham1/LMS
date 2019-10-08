@@ -1,5 +1,5 @@
 import React from 'react';
-import './addpropertymodal.css';
+import './AddPropertyModal.css';
 
 function validate(propertyname, address, city, rentablearea, storeys) { 
   return {

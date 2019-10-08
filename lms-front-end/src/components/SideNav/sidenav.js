@@ -1,5 +1,5 @@
 import React from 'react';
-import './sidenav.css';
+import './Sidenav.css';
 import dashicon from './dashboard.png';
 import pipeicon from './pipeline.png';
 import reporticon from './reports.png';

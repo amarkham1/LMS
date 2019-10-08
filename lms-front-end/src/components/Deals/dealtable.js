@@ -1,5 +1,5 @@
 import React from 'react';
-import './dealtable.css';
+import './DealTable.css';
 
 class DealTable extends React.Component {
 	constructor(props) {

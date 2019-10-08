@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './register.css';
+import './Register.css';
 
 function validate(firstName, lastName, email, password, confirmPassword) { 
 	return {

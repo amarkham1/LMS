@@ -1,5 +1,5 @@
 import React from 'react';
-import './topnav.css';
+import './TopNav.css';
 import PropTypes from 'prop-types';
 import dashicon from './dashboard.png';
 import pipeicon from './pipeline.png';

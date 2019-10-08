@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import TopNav from './components/TopNav/topnav.js';
-import Home from './components/Home/home.js';
-import Signin from './components/Signin/signin.js';
-import Register from './components/Register/register.js';
-import Properties from './components/Properties/properties.js';
-import Deals from './components/Deals/deals.js';
-import Tenants from './components/Tenants/tenants.js';
-import Portfolios from './components/Portfolios/portfolios.js';
-import Reports from './components/Reports/reports.js';
+import TopNav from './components/TopNav/TopNav.js';
+import Home from './components/Home/Home.js';
+import Signin from './components/Signin/Signin.js';
+import Register from './components/Register/Register.js';
+import Properties from './components/Properties/Properties.js';
+import Deals from './components/Deals/Deals.js';
+import Tenants from './components/Tenants/Tenants.js';
+import Portfolios from './components/Portfolios/Portfolios.js';
+import Reports from './components/Reports/Reports.js';
 
 const initialState = {
 	input: '',

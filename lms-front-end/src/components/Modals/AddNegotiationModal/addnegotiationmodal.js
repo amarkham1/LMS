@@ -1,5 +1,5 @@
 import React from 'react';
-import './addnegotiationmodal.css';
+import './AddNegotiationModal.css';
 import Select from 'react-select';
 import moment from "moment";
 import PropTypes from 'prop-types';
